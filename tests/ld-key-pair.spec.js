@@ -2,7 +2,6 @@
 
 const chai = require('chai');
 chai.use(require('dirty-chai'));
-chai.should();
 
 const {expect} = chai;
 
