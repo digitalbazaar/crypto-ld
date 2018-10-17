@@ -2,15 +2,15 @@
   "name": "crypto-ld",
   "version": "0.1.0",
   "description": "A library for managing cryptographic keys using Linked Data.",
-  "homepage": "http://github.com/digitalbazaar/crypto-ld",
+  "homepage": "https://github.com/digitalbazaar/crypto-ld",
   "author": {
     "name": "Digital Bazaar, Inc.",
     "email": "support@digitalbazaar.com",
-    "url": "http://digitalbazaar.com/"
+    "url": "https://digitalbazaar.com/"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/digitalbazaar/crypto-ld"
+    "url": "https://github.com/digitalbazaar/crypto-ld"
   },
   "bugs": {
     "url": "https://github.com/digitalbazaar/crypto-ld/issues",
@@ -49,11 +49,5 @@
     "test": "npm run mocha",
     "preversion": "npm test",
     "postversion": "git push --follow-tags"
-  },
-  "eslintConfig": {
-    "env": {
-      "mocha": true,
-      "node": true
-    }
   }
 }
