@@ -19,9 +19,10 @@
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "dependencies": {
+    "base64url": "^3.0.0",
     "bs58": "^4.0.1",
     "chloride": "^2.2.9",
-    "node-forge": "digitalbazaar/forge#base64url",
+    "node-forge": "^0.7.6",
     "ursa": "JoshKaufman/ursa#7083023efe0dd3802573c4cdbe8b4916708a5a51"
   },
   "devDependencies": {
