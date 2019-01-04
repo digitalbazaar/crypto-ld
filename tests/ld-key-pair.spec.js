@@ -7,15 +7,13 @@ const {expect} = chai;
 
 const {LDKeyPair, Ed25519KeyPair, RSAKeyPair} = require('../lib/index');
 
-const injector = {env: {nodejs: true}};
-
 describe('LDKeyPair', () => {
   describe('Ed25519KeyPair', () => {
     const type = 'Ed25519VerificationKey2018';
 
     describe('export', () => {
       it('should export id, type and key material', async () => {
-        const keyPair = await LDKeyPair.generate({injector, type});
+        const keyPair = await LDKeyPair.generate({type});
         keyPair.id = '#test-id';
         const exported = await keyPair.export();
 
@@ -28,10 +26,10 @@ describe('LDKeyPair', () => {
 
     describe('static from', () => {
       it('should round-trip load exported keys', async () => {
-        const keyPair = await LDKeyPair.generate({injector, type});
+        const keyPair = await LDKeyPair.generate({type});
         keyPair.id = '#test-id';
         const exported = await keyPair.export();
-        const imported = await LDKeyPair.from(exported, {injector});
+        const imported = await LDKeyPair.from(exported);
 
         expect(await imported.export()).to.eql(exported);
       });
@@ -45,7 +43,7 @@ describe('LDKeyPair', () => {
           "privateKeyBase58": "5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj"
         }`);
 
-        const keyPair = await LDKeyPair.from(keyData, {injector});
+        const keyPair = await LDKeyPair.from(keyData);
         expect(keyPair.type).to.equal('Ed25519VerificationKey2018');
         expect(keyPair.id)
           .to.equal('did:v1:test:nym:z279nCCZVzxreYfLw3EtFLtBMSVVY2pA6uxKengriMCdG3DF#ocap-invoke-key-1');
@@ -69,7 +67,7 @@ describe('LDKeyPair', () => {
           }
         }`);
 
-        const keyPair = await LDKeyPair.from(keyData, {injector});
+        const keyPair = await LDKeyPair.from(keyData);
         expect(keyPair.type).to.equal('Ed25519VerificationKey2018');
         expect(keyPair.id)
           .to.equal('did:v1:test:nym:z279nCCZVzxreYfLw3EtFLtBMSVVY2pA6uxKengriMCdG3DF#ocap-invoke-key-1');
@@ -89,7 +87,7 @@ describe('LDKeyPair', () => {
 
     describe('export', () => {
       it('should export id, type and key material', async () => {
-        const keyPair = await LDKeyPair.generate({injector, type});
+        const keyPair = await LDKeyPair.generate({type});
         keyPair.id = '#test-id';
         const exported = await keyPair.export();
 
@@ -102,10 +100,10 @@ describe('LDKeyPair', () => {
 
     describe('static from', () => {
       it('should round-trip load exported keys', async () => {
-        const keyPair = await LDKeyPair.generate({injector, type});
+        const keyPair = await LDKeyPair.generate({type});
         keyPair.id = '#test-id';
         const exported = await keyPair.export();
-        const imported = await LDKeyPair.from(exported, {injector});
+        const imported = await LDKeyPair.from(exported);
 
         expect(await imported.export()).to.eql(exported);
       });
