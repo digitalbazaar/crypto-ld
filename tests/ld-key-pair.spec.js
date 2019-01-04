@@ -50,9 +50,9 @@ describe('LDKeyPair', () => {
         expect(keyPair.owner)
           .to.equal('did:v1:test:nym:z279nCCZVzxreYfLw3EtFLtBMSVVY2pA6uxKengriMCdG3DF');
 
-        expect(keyPair.publicKey)
+        expect(keyPair.publicKeyBase58)
           .to.equal('5U6TbzeAqQtSq9N52XPHFrF5cWwDPHk96uJvKshP4jN5');
-        expect(keyPair.privateKey)
+        expect(keyPair.privateKeyBase58)
           .to.equal('5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj')
       });
 
@@ -74,9 +74,9 @@ describe('LDKeyPair', () => {
         expect(keyPair.owner)
           .to.equal('did:v1:test:nym:z279nCCZVzxreYfLw3EtFLtBMSVVY2pA6uxKengriMCdG3DF');
 
-        expect(keyPair.publicKey)
+        expect(keyPair.publicKeyBase58)
           .to.equal('5U6TbzeAqQtSq9N52XPHFrF5cWwDPHk96uJvKshP4jN5');
-        expect(keyPair.privateKey)
+        expect(keyPair.privateKeyBase58)
           .to.equal('5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj')
       });
     });
