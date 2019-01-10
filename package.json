@@ -57,6 +57,9 @@
     "webpack": "^4.28.4"
   },
   "nyc": {
+    "exclude": [
+      "tests"
+    ],
     "reporter": [
       "html",
       "text-summary"
