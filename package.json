@@ -21,8 +21,8 @@
   "dependencies": {
     "base64url": "^3.0.0",
     "bs58": "^4.0.1",
-    "chloride": "^2.2.9",
-    "node-forge": "^0.7.6"
+    "node-forge": "^0.7.6",
+    "sodium-universal": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
