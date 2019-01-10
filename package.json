@@ -72,7 +72,9 @@
   "keywords": [
     "Decentralized",
     "DID",
-    "Credential"
+    "Credential",
+    "Cryptography",
+    "Linked Data"
   ],
   "scripts": {
     "preversion": "npm test",
