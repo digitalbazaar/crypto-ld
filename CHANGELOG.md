@@ -1,5 +1,8 @@
 # crypto-ld ChangeLog
 
+### Fixed
+- Specify published files.
+
 ### Changed
 - Removed ursa support.
   - Node.js >= 10.12.0: use generateKeyPair().
