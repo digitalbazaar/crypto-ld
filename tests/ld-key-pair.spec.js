@@ -24,6 +24,13 @@ describe('LDKeyPair', () => {
       });
     });
 
+    describe('fingerprint', () => {
+      it('should create an Ed25519 key fingerprint', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        expect(typeof keyPair.fingerprint()).to.equal('string');
+      });
+    });
+
     describe('static from', () => {
       it('should round-trip load exported keys', async () => {
         const keyPair = await LDKeyPair.generate({type});
@@ -95,6 +102,13 @@ describe('LDKeyPair', () => {
         expect(exported.type).to.equal(type);
         expect(exported).to.have.property('publicKeyPem');
         expect(exported).to.have.property('privateKeyPem');
+      });
+    });
+
+    describe('fingerprint', () => {
+      it('should create an RSA key fingerprint', async () => {
+        const keyPair = await RSAKeyPair.generate();
+        expect(typeof keyPair.fingerprint()).to.equal('string');
       });
     });
 
