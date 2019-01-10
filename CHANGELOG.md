@@ -6,6 +6,9 @@
   - Earlier Node.js and browsers: use forge.
 - Switch from chloride to sodium-universal.
 
+### Added
+- Add Karma browser testing support.
+
 ## 2.0.0 - 2019-01-04
 
 - Added `controller` attribute (to use instead of the deprecated `owner`)
