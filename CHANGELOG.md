@@ -7,6 +7,8 @@
 - Removed ursa support.
   - Node.js >= 10.12.0: use generateKeyPair().
   - Earlier Node.js and browsers: use forge.
+  - **NOTE**: Newer Node.js versions are *much* faster at RSA key generation vs
+    the forge fallback. It is highly recommended to use a newer Node.js.
 - Switch from chloride to sodium-universal.
 
 ### Added

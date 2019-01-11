@@ -28,7 +28,8 @@ See also (related specs):
 
 ## Install
 
-Requires Node.js 8.3+
+- Node.js 8.3+ required.
+- Node.js 10.12.0+ is highly recommended due to RSA key generation speed.
 
 To install locally (for development):
 
