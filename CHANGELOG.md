@@ -1,9 +1,16 @@
 # crypto-ld ChangeLog
 
+## 2.0.0 - 2019-xx-xx
+
 ### Fixed
 - Specify published files.
 
 ### Changed
+- **BREAKING** `Ed25519KeyPair` now uses `publicKeyBase58` and
+  `privateKeyBase58` attributes, instead of `publicKeyBase` and
+  `privateKeyBase`
+- **BREAKING** Changed signature of `LDKeyPair.from()` (one `options` param
+  instead of a separate `data` and `options`)
 - Removed ursa support.
   - Node.js >= 10.12.0: use generateKeyPair().
   - Earlier Node.js and browsers: use forge.
@@ -12,16 +19,10 @@
 - Switch from chloride to sodium-universal.
 
 ### Added
-- Add Karma browser testing support.
-
-## 2.0.0 - 2019-01-04
-
 - Added `controller` attribute (to use instead of the deprecated `owner`)
-- Added `sign()` and `verify()` factory functions for use with `jsonld-signatures`
-- **BREAKING** `Ed25519KeyPair` now uses `publicKeyBase58` and `privateKeyBase58`
-  attributes, instead of `publicKeyBase` and `privateKeyBase`
-- **BREAKING** Changed signature of `LDKeyPair.from()` (one `options` param
-  instead of a separate `data` and `options`)
+- Added `sign()` and `verify()` factory functions for use with
+  `jsonld-signatures`
+- Add Karma browser testing support.
 
 ## 1.0.0 - 2018-11-08
 
