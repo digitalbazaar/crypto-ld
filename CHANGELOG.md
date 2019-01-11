@@ -1,5 +1,17 @@
 # crypto-ld ChangeLog
 
+### Fixed
+- Specify published files.
+
+### Changed
+- Removed ursa support.
+  - Node.js >= 10.12.0: use generateKeyPair().
+  - Earlier Node.js and browsers: use forge.
+- Switch from chloride to sodium-universal.
+
+### Added
+- Add Karma browser testing support.
+
 ## 2.0.0 - 2019-01-04
 
 - Added `controller` attribute (to use instead of the deprecated `owner`)

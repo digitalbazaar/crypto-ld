@@ -3,18 +3,24 @@ node_js:
   - "8"
   - "10"
 sudo: false
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.9
-install:
-  - CC=gcc-4.9 CXX=g++-4.9 npm install
-# download test suite and run tests... submodule? meta testing project with
-# all of the reference implementations?
+## only need if jsonld/rdf-canonize used
+##addons:
+##  apt:
+##    sources:
+##      - ubuntu-toolchain-r-test
+##    packages:
+##      - g++-4.9
+##install:
+##  - CC=gcc-4.9 CXX=g++-4.9 npm install
 script:
-  - npm run test
+  - if [ "x$BUNDLER" = "x" ]; then npm run test; fi
+  - if [ "x$BUNDLER" != "x" ]; then npm run test-karma; fi
+# only run karma tests for one node version
+matrix:
+  include:
+  - name: "Browser Unit Tests"
+    node_js: "10"
+    env: BUNDLER=webpack
 notifications:
   email:
     on_success: change
