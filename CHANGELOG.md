@@ -6,10 +6,10 @@
 - Specify published files.
 
 ### Changed
-- **BREAKING** `Ed25519KeyPair` now uses `publicKeyBase58` and
+- **BREAKING**: `Ed25519KeyPair` now uses `publicKeyBase58` and
   `privateKeyBase58` attributes, instead of `publicKeyBase` and
   `privateKeyBase`
-- **BREAKING** Changed signature of `LDKeyPair.from()` (one `options` param
+- **BREAKING**: Changed signature of `LDKeyPair.from()` (one `options` param
   instead of a separate `data` and `options`)
 - Removed ursa support.
   - Node.js >= 10.12.0: use generateKeyPair().
