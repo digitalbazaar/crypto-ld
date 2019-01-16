@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 2.0.0 - 2019-xx-xx
+## 2.0.0 - 2019-01-16
 
 ### Fixed
 - Specify published files.
@@ -11,7 +11,7 @@
   `privateKeyBase`
 - **BREAKING**: Changed signature of `LDKeyPair.from()` (one `options` param
   instead of a separate `data` and `options`)
-- Removed ursa support.
+- Removed `ursa` support.
   - Node.js >= 10.12.0: use generateKeyPair().
   - Earlier Node.js and browsers: use forge.
   - **NOTE**: Newer Node.js versions are *much* faster at RSA key generation vs
