@@ -1,5 +1,8 @@
 # crypto-ld ChangeLog
 
+### Fixed
+- No need to bring in `util` in browser environment.
+
 ## 2.0.0 - 2019-01-16
 
 ### Fixed
