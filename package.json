@@ -81,8 +81,6 @@
     "Linked Data"
   ],
   "scripts": {
-    "preversion": "npm test",
-    "postversion": "git push --follow-tags",
     "test": "npm run test-node",
     "test-node": "cross-env NODE_ENV=test mocha --preserve-symlinks -t 30000 -A -R ${REPORTER:-spec} tests/*.spec.js",
     "test-karma": "karma start",
