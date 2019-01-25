@@ -68,7 +68,6 @@
     ]
   },
   "browser": {
-    "bs58": false,
     "crypto": false,
     "util": false
   },
