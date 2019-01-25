@@ -1,9 +1,10 @@
 'use strict';
 
-const bs58 = require('bs58');
 const chai = require('chai');
-chai.use(require('dirty-chai'));
+const {util: {binary: {base58}}} = require('node-forge');
+const multibase = require('multibase');
 const multicodec = require('multicodec');
+chai.use(require('dirty-chai'));
 chai.should();
 
 const {expect} = chai;
@@ -35,11 +36,11 @@ describe('LDKeyPair', () => {
       it('should be properly multicodec encoded', async () => {
         const keyPair = await Ed25519KeyPair.generate();
         const fingerprint = keyPair.fingerprint();
-        const mcPubkeyBytes = bs58.decode(fingerprint);
+        const mcPubkeyBytes = multibase.decode(fingerprint);
         const mcType = multicodec.getCodec(mcPubkeyBytes);
         mcType.should.equal('ed25519-pub');
         const pubkeyBytes = multicodec.rmPrefix(mcPubkeyBytes);
-        const encodedPubkey = bs58.encode(pubkeyBytes);
+        const encodedPubkey = base58.encode(pubkeyBytes);
         encodedPubkey.should.equal(keyPair.publicKeyBase58);
         expect(typeof keyPair.fingerprint()).to.equal('string');
       });
