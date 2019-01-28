@@ -38,7 +38,7 @@ describe('LDKeyPair', () => {
         const keyPair = await Ed25519KeyPair.generate();
         const fingerprint = keyPair.fingerprint();
         fingerprint.should.be.a('string');
-        fingerprint.startsWith('z').should.be.true;
+        fingerprint.startsWith('z').should.be.true();
       });
       it('should be properly multicodec encoded', async () => {
         const keyPair = await Ed25519KeyPair.generate();
@@ -62,7 +62,48 @@ describe('LDKeyPair', () => {
         result.should.be.an('object');
         expect(result.valid).to.exist;
         result.valid.should.be.a('boolean');
-        result.valid.should.be.true;
+        result.valid.should.be.true();
+      });
+      it('should reject an improperly encoded fingerprint', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        const fingerprint = keyPair.fingerprint();
+        const result = keyPair.verifyFingerprint(fingerprint.slice(1));
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          '`fingerprint` must be a multibase encoded string.');
+      });
+      it('should reject an invalid fingerprint', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        const fingerprint = keyPair.fingerprint();
+        // reverse the valid fingerprint
+        const t = fingerprint.slice(1).split('').reverse().join('');
+        const badFingerprint = fingerprint[0] + t;
+        const result = keyPair.verifyFingerprint(badFingerprint);
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          'The fingerprint does not match the public key.');
+      });
+      it('should reject a numeric fingerprint', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        const result = keyPair.verifyFingerprint(123);
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          '`fingerprint` must be a multibase encoded string.');
       });
     });
 
@@ -145,7 +186,7 @@ describe('LDKeyPair', () => {
         const keyPair = await RSAKeyPair.generate();
         const fingerprint = keyPair.fingerprint();
         fingerprint.should.be.a('string');
-        fingerprint.startsWith('z').should.be.true;
+        fingerprint.startsWith('z').should.be.true();
       });
       it('should be properly multicodec encoded', async () => {
         const keyPair = await RSAKeyPair.generate();
@@ -186,7 +227,48 @@ describe('LDKeyPair', () => {
         result.should.be.an('object');
         expect(result.valid).to.exist;
         result.valid.should.be.a('boolean');
-        result.valid.should.be.true;
+        result.valid.should.be.true();
+      });
+      it('should reject an improperly encoded fingerprint', async () => {
+        const keyPair = await RSAKeyPair.generate();
+        const fingerprint = keyPair.fingerprint();
+        const result = keyPair.verifyFingerprint(fingerprint.slice(1));
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          '`fingerprint` must be a multibase encoded string.');
+      });
+      it('should reject an invalid fingerprint', async () => {
+        const keyPair = await RSAKeyPair.generate();
+        const fingerprint = keyPair.fingerprint();
+        // reverse the valid fingerprint
+        const t = fingerprint.slice(1).split('').reverse().join('');
+        const badFingerprint = fingerprint[0] + t;
+        const result = keyPair.verifyFingerprint(badFingerprint);
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          'The fingerprint does not match the public key.');
+      });
+      it('should reject a numeric fingerprint', async () => {
+        const keyPair = await RSAKeyPair.generate();
+        const result = keyPair.verifyFingerprint(123);
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false();
+        expect(result.error).to.exist;
+        result.error.message.should.equal(
+          '`fingerprint` must be a multibase encoded string.');
       });
     });
 
