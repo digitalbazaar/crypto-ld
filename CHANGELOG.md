@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 3.1.0 - TBD
+## 3.1.0 - 2019-02-18
 
 ### Changed
 - Use forge@0.8.0. The new `rsa.generateKeyPair` API automatically uses
