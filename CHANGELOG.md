@@ -1,5 +1,11 @@
 # crypto-ld ChangeLog
 
+## 3.1.0 - TBD
+
+### Changed
+- Use forge@0.8.0. The new `rsa.generateKeyPair` API automatically uses
+  native implementation when available in nodejs >= 10.12.0.
+
 ## 3.0.0 - 2019-01-30
 
 ### Changed

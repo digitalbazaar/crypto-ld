@@ -24,7 +24,7 @@
   "dependencies": {
     "base64url": "^3.0.0",
     "bs58": "^4.0.1",
-    "node-forge": "^0.7.6",
+    "node-forge": "^0.8.0",
     "sodium-universal": "^2.0.0"
   },
   "devDependencies": {
