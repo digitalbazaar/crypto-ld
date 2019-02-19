@@ -1,5 +1,12 @@
 # crypto-ld ChangeLog
 
+## 3.2.0 - 2019-02-19
+
+### Changed
+- Remove `sodium-universal` dependency to reduce the size of the browser bundle.
+- Ed25519 operations in Node.js use `sodium-native` APIs.
+- Ed25519 operations in the browser use `forge` APIs.
+
 ## 3.1.0 - 2019-02-18
 
 ### Changed
