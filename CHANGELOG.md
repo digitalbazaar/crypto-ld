@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 3.2.0 - TBD
+## 3.2.0 - 2019-02-19
 
 ### Changed
 - Remove `sodium-universal` dependency to reduce the size of the browser bundle.
