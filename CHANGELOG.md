@@ -1,5 +1,12 @@
 # crypto-ld ChangeLog
 
+## 3.3.0 - TBD
+
+### Changed
+- Improve error handling related to the decoding of key material in
+  `Ed25519KeyPair`. This is helpful when dealing with key material that may
+  be provided via command line or web UI.
+
 ## 3.2.0 - 2019-02-19
 
 ### Changed

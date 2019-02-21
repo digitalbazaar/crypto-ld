@@ -9,7 +9,7 @@ const {
 const multibase = require('multibase');
 const multicodec = require('multicodec');
 const multihashes = require('multihashes');
-chai.should();
+const should = chai.should();
 
 const {expect} = chai;
 
@@ -49,6 +49,21 @@ describe('LDKeyPair', () => {
         const encodedPubkey = base58.encode(pubkeyBytes);
         encodedPubkey.should.equal(keyPair.publicKeyBase58);
         expect(typeof keyPair.fingerprint()).to.equal('string');
+      });
+      it('throws TypeError on improper public key material', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        let error;
+        let result;
+        keyPair.publicKeyBase58 = 'PUBLICKEYINFO';
+        try {
+          result = keyPair.fingerprint();
+        } catch(e) {
+          error = e;
+        }
+        should.not.exist(result);
+        should.exist(error);
+        error.should.be.instanceof(TypeError);
+        error.message.should.contain('must be Base58 encoded');
       });
     });
 
@@ -104,8 +119,20 @@ describe('LDKeyPair', () => {
         result.error.message.should.equal(
           '`fingerprint` must be a multibase encoded string.');
       });
+      it('should reject an improperly encoded fingerprint', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        const result = keyPair.verifyFingerprint('zPUBLICKEYINFO');
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.false;
+        expect(result.error).to.exist;
+        result.error.message.should.contain('must be Base58 encoded');
+      });
     });
 
+    /* eslint-disable max-len */
     describe('static from', () => {
       it('should round-trip load exported keys', async () => {
         const keyPair = await LDKeyPair.generate({type});
@@ -135,7 +162,7 @@ describe('LDKeyPair', () => {
         expect(keyPair.publicKeyBase58)
           .to.equal('5U6TbzeAqQtSq9N52XPHFrF5cWwDPHk96uJvKshP4jN5');
         expect(keyPair.privateKeyBase58)
-          .to.equal('5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj')
+          .to.equal('5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj');
       });
 
       it('should load from legacy privateDidDocument format (ed25519)', async () => {
@@ -161,7 +188,8 @@ describe('LDKeyPair', () => {
         expect(keyPair.privateKeyBase58)
           .to.equal('5hvHHCpocudyac6fT6jJCHe2WThQHsKYsjazkGV2L1Umwj5w9HtzcqoZ886yHJdHKbpC4W2qGhUMPbHNPpNDK6Dj');
       });
-    });
+    }); // end static from
+    /* eslint-enable max-len */
   });
 
   describe('RSAKeyPair', () => {
