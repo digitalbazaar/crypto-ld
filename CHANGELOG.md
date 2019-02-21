@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 3.3.0 - TBD
+## 3.3.0 - 2019-02-21
 
 ### Changed
 - Improve error handling related to the decoding of key material in
