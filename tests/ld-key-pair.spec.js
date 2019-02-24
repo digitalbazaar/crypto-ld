@@ -32,6 +32,27 @@ describe('LDKeyPair', () => {
       });
     });
 
+    describe('generate', () => {
+      it('should generate the same key from the same seed', async () => {
+        const seed = new Uint8Array(32);
+        seed.fill(0x01);
+        const keyPair1 = await LDKeyPair.generate({type, seed});
+        const keyPair2 = await LDKeyPair.generate({type, seed});
+        expect(keyPair1.publicKey).to.equal(keyPair2.publicKey);
+        expect(keyPair1.privateKey).to.equal(keyPair2.privateKey);
+      });
+      it('should fail to generate a key with an invalid seed', async () => {
+        let error;
+        try {
+          const seed = null;
+          const keyPair = await LDKeyPair.generate({type, seed});
+        } catch(e) {
+          error = e;
+        }
+        expect(error).to.exist;
+      });
+    });
+
     describe('fingerprint', () => {
       it('should create an Ed25519 key fingerprint', async () => {
         const keyPair = await Ed25519KeyPair.generate();
@@ -129,6 +150,20 @@ describe('LDKeyPair', () => {
         result.valid.should.be.false;
         expect(result.error).to.exist;
         result.error.message.should.contain('must be Base58 encoded');
+      });
+      it('should generate the same fingerprint from the same seed', async () => {
+        const seed = new Uint8Array(32);
+        seed.fill(0x01);
+        const keyPair1 = await Ed25519KeyPair.generate({seed});
+        const keyPair2 = await Ed25519KeyPair.generate({seed});
+        const fingerprint = keyPair1.fingerprint();
+        const fingerprint2 = keyPair2.fingerprint();
+        const result = keyPair2.verifyFingerprint(fingerprint);
+        expect(result).to.exist;
+        result.should.be.an('object');
+        expect(result.valid).to.exist;
+        result.valid.should.be.a('boolean');
+        result.valid.should.be.true;
       });
     });
 

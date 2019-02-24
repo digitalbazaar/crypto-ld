@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 3.4.0 - 2019-02-xx
+
+### Added
+- Enable use of a `seed` to generate deterministic Ed25519 keys.
+
 ## 3.3.0 - 2019-02-21
 
 ### Changed
