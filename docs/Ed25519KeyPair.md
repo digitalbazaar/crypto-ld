@@ -39,12 +39,12 @@ for
 
 **Example**  
 ```js
-> const privateKey =
+> const privateKeyBase58 =
   '3Mmk4UzTRJTEtxaKk61LxtgUxAa2Dg36jF6VogPtRiKvfpsQWKPCLesKSV182RMmvM'
   + 'JKk6QErH3wgdHp8itkSSiF';
 > const options = {
   publicKeyBase58: 'GycSSui454dpYRKiFdsQ5uaE8Gy3ac6dSMPcAoQsk8yq',
-  privateKeyBase58: privateKey
+  privateKeyBase58
 };
 > const EDKey = new Ed25519KeyPair(options);
 > EDKey
