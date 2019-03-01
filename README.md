@@ -14,14 +14,6 @@
 - [Commercial Support](#commercial-support)
 - [License](#license)
 
-## Security
-
-TBD
-
-## Background
-
-TBD
-
 See also (related specs):
 
 * [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
@@ -39,11 +31,11 @@ cd crypto-ld
 npm install
 ```
 
-## Usage
+## API Documentation
 
 See [LD Key Pair Documentation](/docs/LDKeyPair.md)
 
-See [ED 25519 Key Pair Documentation](/docs/Ed25519KeyPair.md)
+See [Ed25519 Key Pair Documentation](/docs/Ed25519KeyPair.md)
 
 See [RSA Key Pair Documentation](/docs/RSAKeyPair.md)
 
