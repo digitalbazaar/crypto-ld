@@ -9,7 +9,7 @@ const opFactory = file => ({template, files: `./lib/${file.name || file}`});
 
 // we only generate docs for files which end with keypair or index.
 const docs = /(keypair|index).js/i;
-const files = fs.readdirSync('./lib', {withFileTypes: true})
+const files = fs.readdirSync('./lib')
   .filter(p => docs.test(p || p.name));
 files.forEach(filePath => {
   const options = opFactory(filePath);
