@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 3.4.1 - 2019-03-27
+
+### Fixed
+- Fix Ed25519 fingerprint generation when running in the browser.
+
 ## 3.4.0 - 2019-02-26
 
 ### Added
