@@ -1,5 +1,11 @@
 # crypto-ld ChangeLog
 
+## 3.5.0 - 2019-04-08
+
+### Added
+- Add `util.base58PublicKeyFingerprint` helper for computing public key
+  fingerprints.
+
 ## 3.4.1 - 2019-03-27
 
 ### Fixed
