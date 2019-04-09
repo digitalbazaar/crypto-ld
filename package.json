@@ -1,6 +1,6 @@
 {
   "name": "crypto-ld",
-  "version": "3.5.1-0",
+  "version": "3.5.1",
   "description": "A library for managing cryptographic keys using Linked Data.",
   "homepage": "https://github.com/digitalbazaar/crypto-ld",
   "author": {
