@@ -1,10 +1,17 @@
 # crypto-ld ChangeLog
 
+## 3.5.1 - 2019-04-09
+
+### Fixed
+- The `util.base58PublicKeyFingerprint` was released in error. It has been
+  replaced by the `Ed25519KeyPair.fingerprintFromPublicKey` API contained
+  in this release.
+
 ## 3.5.0 - 2019-04-08
 
 ### Added
 - Add `util.base58PublicKeyFingerprint` helper for computing public key
-  fingerprints.
+  fingerprints. NOTE: this API was released in error, see release 3.5.1.
 
 ## 3.4.1 - 2019-03-27
 
