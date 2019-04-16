@@ -78,7 +78,7 @@
     "util": false
   },
   "engines": {
-    "node": "^8.3.0"
+    "node": ">=8.3.0"
   },
   "keywords": [
     "Decentralized",
