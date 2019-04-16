@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 3.5.2 - 2019-04-16
+
+### Fixed
+- Fix incorrectly formatted engine tag in package file.
+
 ## 3.5.1 - 2019-04-09
 
 ### Fixed
