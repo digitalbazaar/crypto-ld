@@ -1,3 +1,6 @@
+/*!
+ * Copyright (c) 2018-2019 Digital Bazaar, Inc. All rights reserved.
+ */
 'use strict';
 
 const chai = require('chai');
@@ -33,6 +36,22 @@ describe('LDKeyPair', () => {
     });
 
     describe('generate', () => {
+      it('should generate a key pair', async () => {
+        let ldKeyPair;
+        let error;
+        try {
+          ldKeyPair = await LDKeyPair.generate({type});
+        } catch(e) {
+          error = e;
+        }
+        should.not.exist(error);
+        should.exist(ldKeyPair.privateKeyBase58);
+        should.exist(ldKeyPair.publicKeyBase58);
+        const privateKeyBytes = base58.decode(ldKeyPair.privateKeyBase58);
+        const publicKeyBytes = base58.decode(ldKeyPair.publicKeyBase58);
+        privateKeyBytes.length.should.equal(64);
+        publicKeyBytes.length.should.equal(32);
+      });
       it('should generate the same key from the same seed', async () => {
         const seed = new Uint8Array(32);
         seed.fill(0x01);
@@ -52,6 +71,15 @@ describe('LDKeyPair', () => {
         expect(error).to.exist;
       });
     });
+
+    describe('signer factory', () => {
+      it('should create a signer', async () => {
+        const ldKeyPair = await LDKeyPair.generate({type});
+        const signer = ldKeyPair.signer();
+        should.exist(signer.sign);
+        signer.sign.should.be.a('function');
+      });
+    }); // end signer factor
 
     describe('fingerprint', () => {
       it('should create an Ed25519 key fingerprint', async () => {
@@ -151,7 +179,7 @@ describe('LDKeyPair', () => {
         expect(result.error).to.exist;
         result.error.message.should.contain('must be Base58 encoded');
       });
-      it('should generate the same fingerprint from the same seed', async () => {
+      it('generates the same fingerprint from the same seed', async () => {
         const seed = new Uint8Array(32);
         seed.fill(0x01);
         const keyPair1 = await Ed25519KeyPair.generate({seed});
