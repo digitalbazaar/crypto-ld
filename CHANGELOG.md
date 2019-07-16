@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 3.5.3 - 2019-07-16
+
+### Fixed
+- Use base64url-universal@1.0.1 which properly specifies the Node.js engine.
+
 ## 3.5.2 - 2019-04-16
 
 ### Fixed
