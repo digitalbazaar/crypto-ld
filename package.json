@@ -22,7 +22,7 @@
     "lib/*.js"
   ],
   "dependencies": {
-    "base64url-universal": "^1.0.0",
+    "base64url-universal": "^1.0.1",
     "bs58": "^4.0.1",
     "node-forge": "^0.8.0",
     "sodium-native": "^2.3.0"
