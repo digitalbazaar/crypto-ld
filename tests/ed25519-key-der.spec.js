@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const bs58 = require('bs58');
+const {util: {binary: {base58}}} = require('node-forge');
 const {_derEncode: privateDerEncode} =
   require('../lib/ed25519PrivateKeyNode12');
 const {_derEncode: publicDerEncode} = require('../lib/ed25519PublicKeyNode12');
@@ -16,13 +16,13 @@ const targetPublicDerBytesBase64 =
   'MCowBQYDK2VwAyEAvHZI57pFMs4OnJfkcp0QSotH9LbDT/6yRtYKt/ZpUpU=';
 
 const privateKeyBytes = util.base58Decode({
-  decode: bs58.decode,
+  decode: base58.decode,
   keyMaterial: mockKey.privateKeyBase58,
   type: 'private'
 });
 
 const publicKeyBytes = util.base58Decode({
-  decode: bs58.decode,
+  decode: base58.decode,
   keyMaterial: mockKey.publicKeyBase58,
   type: 'public'
 });
