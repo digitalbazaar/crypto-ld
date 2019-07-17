@@ -78,7 +78,10 @@
     "bs58": false,
     "crypto": false,
     "sodium-native": false,
-    "util": false
+    "util": false,
+    "semver": false,
+    "./lib/ed25519PublicKeyNode12.js": false,
+    "./lib/ed25519PrivateKeyNode12.js": false
   },
   "engines": {
     "node": ">=8.3.0"
