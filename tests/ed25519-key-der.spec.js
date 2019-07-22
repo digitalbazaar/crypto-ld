@@ -4,10 +4,8 @@
 'use strict';
 
 const {util: {binary: {base58}}} = require('node-forge');
-const {_derEncode: privateDerEncode} =
-  require('../lib/ed25519PrivateKeyNode12');
-const {_derEncode: publicDerEncode} = require('../lib/ed25519PublicKeyNode12');
-const util = require('../lib/util');
+const {base58Decode, privateKeyDerEncode, publicKeyDerEncode} =
+  require('../lib/util');
 const mockKey = require('./mock-key');
 
 const targetPrivateDerBytesBase64 =
@@ -15,13 +13,13 @@ const targetPrivateDerBytesBase64 =
 const targetPublicDerBytesBase64 =
   'MCowBQYDK2VwAyEAvHZI57pFMs4OnJfkcp0QSotH9LbDT/6yRtYKt/ZpUpU=';
 
-const privateKeyBytes = util.base58Decode({
+const privateKeyBytes = base58Decode({
   decode: base58.decode,
   keyMaterial: mockKey.privateKeyBase58,
   type: 'private'
 });
 
-const publicKeyBytes = util.base58Decode({
+const publicKeyBytes = base58Decode({
   decode: base58.decode,
   keyMaterial: mockKey.publicKeyBase58,
   type: 'public'
@@ -31,7 +29,7 @@ describe('Ed25519 Keys', () => {
   describe('Ed25519 Private Key', () => {
     describe('DER encoding', () => {
       it('works properly', async () => {
-        const forgeDer = privateDerEncode({privateKeyBytes});
+        const forgeDer = privateKeyDerEncode({privateKeyBytes});
         const forgeDerBytesBase64 = Buffer.from(forgeDer).toString('base64');
         forgeDerBytesBase64.should.equal(targetPrivateDerBytesBase64);
       });
@@ -41,7 +39,7 @@ describe('Ed25519 Keys', () => {
   describe('Ed25519 Public Key', () => {
     describe('DER encoding', () => {
       it('works properly', async () => {
-        const forgeDer = publicDerEncode({publicKeyBytes});
+        const forgeDer = publicKeyDerEncode({publicKeyBytes});
         const forgeDerBytesBase64 = Buffer.from(forgeDer).toString('base64');
         forgeDerBytesBase64.should.equal(targetPublicDerBytesBase64);
       });
