@@ -24,7 +24,7 @@
   "dependencies": {
     "base64url-universal": "^1.0.1",
     "bs58": "^4.0.1",
-    "node-forge": "digitalbazaar/forge#asn1-validator-node-ed25519",
+    "node-forge": "~0.9.0",
     "semver": "^6.2.0"
   },
   "optionalDependencies": {
