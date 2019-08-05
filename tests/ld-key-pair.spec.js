@@ -167,6 +167,16 @@ describe('LDKeyPair', () => {
       });
     });
 
+    describe('static fromFingerprint', () => {
+      it('should round-trip load keys', async () => {
+        const keyPair = await Ed25519KeyPair.generate();
+        const fingerprint = keyPair.fingerprint();
+
+        const newKey = LDKeyPair.fromFingerprint({fingerprint});
+        expect(newKey.publicKeyBase58).to.equal(keyPair.publicKeyBase58);
+      });
+    });
+
     /* eslint-disable max-len */
     describe('static from', () => {
       it('should round-trip load exported keys', async () => {
