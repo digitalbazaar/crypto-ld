@@ -1,5 +1,11 @@
 # crypto-ld ChangeLog
 
+## 3.6.0 - TBD
+
+### Added
+- Add `LDKeyPair.fromFingerprint()` to create an Ed25519KeyPair instance
+  from a fingerprint (for use with `did:key` method code).
+
 ## 3.5.3 - 2019-07-16
 
 ### Fixed
