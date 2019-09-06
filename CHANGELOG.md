@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 3.7.0 - TBD
+## 3.7.0 - 2019-09-06
 
 ### Added
 - Add support for Node 12 Ed25519 generate, sign, and verify.
