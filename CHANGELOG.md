@@ -1,5 +1,11 @@
 # crypto-ld ChangeLog
 
+## 3.7.0 - TBD
+
+### Added
+- Add support for Node 12 Ed25519 generate, sign, and verify.
+- Make `sodium-native` an optional dependency.
+
 ## 3.6.0 - 2019-08-06
 
 ### Added
