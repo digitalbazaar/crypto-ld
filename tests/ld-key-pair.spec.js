@@ -62,13 +62,15 @@ describe('LDKeyPair', () => {
       });
       it('should fail to generate a key with an invalid seed', async () => {
         let error;
+        let keyPair;
         try {
           const seed = null;
-          const keyPair = await LDKeyPair.generate({type, seed});
+          keyPair = await LDKeyPair.generate({type, seed});
         } catch(e) {
           error = e;
         }
         expect(error).to.exist;
+        expect(keyPair).not.to.exist;
       });
     });
 
@@ -192,6 +194,7 @@ describe('LDKeyPair', () => {
         expect(result.valid).to.exist;
         result.valid.should.be.a('boolean');
         result.valid.should.be.true;
+        fingerprint.should.equal(fingerprint2);
       });
     });
 
