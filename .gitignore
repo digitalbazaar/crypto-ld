@@ -3,8 +3,10 @@
 .cproject
 .project
 .c9
+*.lcov
 *.sublime-project
 *.sublime-workspace
+.vscode
 .DS_Store
 .settings
 coverage

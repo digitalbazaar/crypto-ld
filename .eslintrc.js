@@ -3,5 +3,6 @@ module.exports = {
   extends: ["eslint-config-digitalbazaar"],
   env: {
     node: true
-  }
+  },
+  ignorePatterns: ['dist/']
 }
