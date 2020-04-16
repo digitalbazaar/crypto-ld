@@ -288,7 +288,8 @@ describe('LDKeyPair', () => {
         fingerprint.should.be.a('string');
         fingerprint.startsWith('z').should.be.true;
       });
-      it('should be properly multicodec encoded', async () => {
+      // FIXME: https://github.com/digitalbazaar/crypto-ld/issues/43
+      it.skip('should be properly multicodec encoded', async () => {
         const keyPair = await RSAKeyPair.generate();
         const fingerprint = keyPair.fingerprint();
         const mcPubkeyBytes = multibase.decode(fingerprint);
