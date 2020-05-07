@@ -9,6 +9,7 @@ const {
   pki: {getPublicKeyFingerprint, publicKeyFromPem},
   util: {binary: {base58}}
 } = require('node-forge');
+const mockKey = require('./mock-key.json');
 const multibase = require('multibase');
 const multicodec = require('multicodec');
 const multihashes = require('multihashes');
@@ -21,6 +22,17 @@ const {LDKeyPair, Ed25519KeyPair, RSAKeyPair} = require('..');
 describe('LDKeyPair', () => {
   describe('Ed25519KeyPair', () => {
     const type = 'Ed25519VerificationKey2018';
+
+    describe('constructor', () => {
+      it('should auto-set key.id based on controller, if present', async () => {
+        const {publicKeyBase58} = mockKey;
+        const controller = 'did:example:1234';
+
+        const keyPair = new Ed25519KeyPair({controller, publicKeyBase58});
+        expect(keyPair.id).to.equal(
+          'did:example:1234#z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL');
+      });
+    });
 
     describe('export', () => {
       it('should export id, type and key material', async () => {
