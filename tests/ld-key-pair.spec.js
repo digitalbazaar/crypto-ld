@@ -32,6 +32,17 @@ describe('LDKeyPair', () => {
         expect(keyPair.id).to.equal(
           'did:example:1234#z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL');
       });
+
+      it('should error if publicKeyBase58 property is missing', async () => {
+        let error;
+        try {
+          new Ed25519KeyPair({});
+        } catch(e) {
+          error = e;
+        }
+        expect(error.message)
+          .to.equal('The "publicKeyBase58" property is required.');
+      });
     });
 
     describe('export', () => {

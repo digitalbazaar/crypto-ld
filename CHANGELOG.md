@@ -1,5 +1,14 @@
 # crypto-ld ChangeLog
 
+## 4.0.0 - TBD
+
+### Added
+- Auto-initialize key.id based on controller (if it's present).
+
+### Changed
+- **BREAKING**: Explicitly make `publicBase58` property required for Ed25519
+  type keys (throw error if missing).
+
 ## 3.7.0 - 2019-09-06
 
 ### Added
