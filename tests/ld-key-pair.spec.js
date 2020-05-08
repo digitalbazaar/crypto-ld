@@ -40,7 +40,7 @@ describe('LDKeyPair', () => {
         } catch(e) {
           error = e;
         }
-        expect(error.name).to.equal('TypeError');
+        expect(error).to.be.an.instanceof(TypeError);
         expect(error.message)
           .to.equal('The "publicKeyBase58" property is required.');
       });
