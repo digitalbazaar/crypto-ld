@@ -1,8 +1,8 @@
-# Crypto LD (Linked Data) _(crypto-ld)_
+# Cryptographic Key Pair Library for Linked Data _(crypto-ld)_
 
 [![Build Status](https://travis-ci.org/digitalbazaar/crypto-ld.png?branch=master)](https://travis-ci.org/digitalbazaar/crypto-ld)
 
-> A Javascript library for cryptographic operations using Linked Data
+> A Javascript library for generating Linked Data cryptographic key pairs
 
 ## Table of Contents
 
@@ -10,34 +10,31 @@
 - [Security](#security)
 - [Install](#install)
 - [Usage](#usage)
-- [API](#api-documentation)
 - [Contribute](#contribute)
 - [Commercial Support](#commercial-support)
 - [License](#license)
 
 ## Background
 
-See also (related specs):
-
-* [Linked Data Proofs 1.0](https://w3c-dvcg.github.io/ld-proofs/)
-* [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
-
 ### Supported Key Types
 
-This library provides general Linked Data key generation functionality, but
-does not support any individual key type by default.
+This library provides general Linked Data cryptographic key generation 
+functionality, but does not support any individual key type by default.
 
-To use it, you must install individual driver libraries for each cryptographic
-key type. The following are currently supported:
+To use it, you must [install individual driver libraries](#usage) for each 
+cryptographic key type. The following libraries are currently supported.
 
-* [Ed25519](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) keys:
-  [`ed25519key-pair` lib](https://github.com/digitalbazaar/ed25519-key-pair)
-* [RSA](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsa) keys:
-  [`rsa-pair` lib](https://github.com/digitalbazaar/rsa-key-pair)
-* [EcdsaSecp256k1](https://w3c-dvcg.github.io/lds-ecdsa-secp256k1-2019/) keys: 
-  [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/)
-* Curve25519 keys:
-  [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair)
+| Type        | Crypto Suite | Library | Usage |
+|-------------|--------------|---------|-------|
+| `ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-key-pair`](https://github.com/digitalbazaar/ed25519-key-pair) | Signatures, VCs, zCaps, DIDAuth |
+| `secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
+| `rsa`       | [RsaSignature2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-key-pair`](https://github.com/digitalbazaar/rsa-key-pair) | Legacy/interop signatures and use cases |
+| `x25519`    | X25519KeyAgreementKey2019 | [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
+
+See also (related specs):
+
+* [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
+* [Linked Data Proofs 1.0](https://w3c-dvcg.github.io/ld-proofs/)
 
 #### Choosing a Key Type
 
@@ -50,8 +47,7 @@ authorization capabilities, and DIDAuth operations:
 * Use **EcdsaSepc256k1** keys if your use case requires it (for example, if 
   you're developing for a Bitcoin-based or Ethereum-based ledger), or if you
   require Hierarchical Deterministic (HD) wallet functionality. 
-* You should only use RSA keys when interfacing with legacy systems that
-  require them.
+* Only use RSA keys when interfacing with legacy systems that require them.
   
 For key agreement protocols for encryption operations:
 
@@ -98,13 +94,14 @@ To use the library with all supported key types:
 
 ```
 const {cryptoLd} = require('crypto-ld');
-cryptoLd.use(require('ed25519-key-pair')); // Ed25519VerificationKey2018 type
-cryptoLd.use(require('rsa-key-pair')); // RsaVerificationKey2018 type
-cryptoLd.use(require('secp256k1-key-pair')); // EcdsaSecp256k1VerificationKey2019 type
-cryptoLd.use(require('x25519-key-pair')); // X25519KeyAgreementKey2019 type
+cryptoLd.use(require('ed25519-key-pair')); // ed25519 type
+cryptoLd.use(require('rsa-key-pair')); // rsa type
+cryptoLd.use(require('secp256k1-key-pair')); // secp256k1 type
+cryptoLd.use(require('x25519-key-pair')); // x25519 type
 
 // When using multiple key types, you'll need to specify type when generating
-const rsaKeyPair = await cryptoLd.generate({type: 'RsaVerificationKey2018'});
+const edKeyPair = await cryptoLd.generate({type: 'ed25519'});
+const rsaKeyPair = await cryptoLd.generate({type: 'rsa'});
 ```
 
 ### Generating a new public/private key pair
