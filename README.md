@@ -61,8 +61,7 @@ your system will largely depend on your design decisions.
 
 ## Install
 
-- Node.js 8.3+ required.
-- Node.js 10.12.0+ is highly recommended due to RSA key generation speed.
+- Node.js 10.12.0+ is required.
 
 To install locally (for development):
 
