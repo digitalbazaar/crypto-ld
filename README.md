@@ -81,7 +81,9 @@ libraries for key types you'll be working with via the `use()` method.
 For example, to use this library with only the `ed25519` key type:
 
 ```
-const {cryptoLd} = require('crypto-ld');
+import {CryptoLd} from 'crypto-ld';
+const cryptoLd = new CryptoLd();
+
 cryptoLd.use(require('ed25519-key-pair');
 
 // With only one key type installed, you do not need to specify key type for
@@ -92,7 +94,9 @@ const keyPair = await cryptoLd.generate(); // generates an ed25519 key pair
 To use the library with all supported key types:
 
 ```
-const {cryptoLd} = require('crypto-ld');
+import {CryptoLd} from 'crypto-ld';
+const cryptoLd = new CryptoLd();
+
 cryptoLd.use(require('ed25519-key-pair')); // ed25519 type
 cryptoLd.use(require('rsa-key-pair')); // rsa type
 cryptoLd.use(require('secp256k1-key-pair')); // secp256k1 type
@@ -119,7 +123,7 @@ To create an instance of a public/private key pair from data imported from
 storage, use `cryptoLd.from()`:
 
 ```js
-const serializedKeyPair = await loadFromSomeStorage();
+const serializedKeyPair = { ... };
 
 const keyPair = cryptoLd.from(serializedKeyPair);
 ```
