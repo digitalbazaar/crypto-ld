@@ -125,7 +125,7 @@ storage, use `cryptoLd.from()`:
 ```js
 const serializedKeyPair = { ... };
 
-const keyPair = cryptoLd.from(serializedKeyPair);
+const keyPair = await cryptoLd.from(serializedKeyPair);
 ```
 
 Note that only installed key types are supported, if you try to create a
