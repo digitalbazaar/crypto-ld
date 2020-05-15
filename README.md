@@ -81,8 +81,8 @@ libraries for key types you'll be working with via the `use()` method.
 For example, to use this library with only the `ed25519` key type:
 
 ```
-import {CryptoLd} from 'crypto-ld';
-const cryptoLd = new CryptoLd();
+import {CryptoLD} from 'crypto-ld';
+const cryptoLd = new CryptoLD();
 
 cryptoLd.use(require('ed25519-key-pair');
 
@@ -94,8 +94,8 @@ const keyPair = await cryptoLd.generate(); // generates an ed25519 key pair
 To use the library with all supported key types:
 
 ```
-import {CryptoLd} from 'crypto-ld';
-const cryptoLd = new CryptoLd();
+import {CryptoLD} from 'crypto-ld';
+const cryptoLd = new CryptoLD();
 
 cryptoLd.use(require('ed25519-key-pair')); // ed25519 type
 cryptoLd.use(require('rsa-key-pair')); // rsa type
