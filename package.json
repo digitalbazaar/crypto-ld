@@ -21,8 +21,7 @@
   "files": [
     "lib/*.js"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "optionalDependencies": {
     "sodium-native": "^3.2.0"
   },
@@ -39,7 +38,7 @@
     "eslint": "^7.0.0",
     "eslint-config-digitalbazaar": "^2.4.0",
     "eslint-plugin-jsdoc": "^25.4.1",
-    "karma": "^5.0.5",
+    "karma": "^5.0.7",
     "karma-babel-preprocessor": "^8.0.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.0",
@@ -61,8 +60,7 @@
       "text-summary"
     ]
   },
-  "browser": {
-  },
+  "browser": {},
   "engines": {
     "node": ">=8.3.0"
   },
