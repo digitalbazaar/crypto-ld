@@ -94,17 +94,19 @@ describe('LDKeyPair', () => {
       keyPair.type = 'ExampleVerificationKey2020';
       const encodedPublicKey = 'encoded public key';
 
-      keyPair.addPublicKey = (node) => {
+      keyPair.addPublicKey = node => {
         node.publicKeyBase58 = encodedPublicKey;
         return node;
-      }
-      keyPair.addPrivateKey = () => {throw new Error('Should not be exported')}
+      };
+      keyPair.addPrivateKey = () => {
+        throw new Error('Should not be exported');
+      };
 
       expect(keyPair.exportPublic()).to.eql({
-        'controller': 'did:ex:1234',
-        'id': 'did:ex:1234#fingerprint',
-        'publicKeyBase58': 'encoded public key',
-        'type': 'ExampleVerificationKey2020'
+        controller: 'did:ex:1234',
+        id: 'did:ex:1234#fingerprint',
+        publicKeyBase58: 'encoded public key',
+        type: 'ExampleVerificationKey2020'
       });
     });
   });
@@ -117,20 +119,20 @@ describe('LDKeyPair', () => {
       const encodedPublicKey = 'encoded public key';
       const encodedPrivateKey = 'encoded private key';
 
-      keyPair.addPublicKey = (node) => {
+      keyPair.addPublicKey = node => {
         node.publicKeyBase58 = encodedPublicKey;
         return node;
-      }
-      keyPair.addPrivateKey = (node) => {
+      };
+      keyPair.addPrivateKey = node => {
         node.privateKeyBase58 = encodedPrivateKey;
         return node;
-      }
+      };
       expect(keyPair.exportFull()).to.eql({
-        'controller': 'did:ex:1234',
-        'id': 'did:ex:1234#fingerprint',
-        'publicKeyBase58': 'encoded public key',
-        'privateKeyBase58': 'encoded private key',
-        'type': 'ExampleVerificationKey2020'
+        controller: 'did:ex:1234',
+        id: 'did:ex:1234#fingerprint',
+        publicKeyBase58: 'encoded public key',
+        privateKeyBase58: 'encoded private key',
+        type: 'ExampleVerificationKey2020'
       });
     });
   });
