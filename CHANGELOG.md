@@ -2,12 +2,16 @@
 
 ## 4.0.0 - TBD
 
-### Added
-- Auto-initialize key.id based on controller (if it's present).
-
 ### Changed
-- **BREAKING**: Explicitly make `publicBase58` property required for Ed25519
-  type keys (throw error if missing).
+- **BREAKING**: Extracted bundled Ed25519 and RSA key types to their own
+  libraries.
+- Implement chai-like `.use()` API for installing and specifying individual key 
+  types.
+- **BREAKING**: Rename `.publicNode()` to `.exportPublic()`, 
+  rename `.export()` to `.exportFull()`.
+- **BREAKING**: Remove deprecated `.owner` instance property
+- **BREAKING**: Remove deprecated `.passphrase` instance property, and the `encrypt()` and 
+  `decrypt()` methods (these are no longer used).
 
 ## 3.7.0 - 2019-09-06
 

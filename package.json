@@ -34,7 +34,6 @@
     "@babel/runtime": "^7.9.6",
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
-    "chai-bytes": "^0.1.2",
     "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
     "eslint-config-digitalbazaar": "^2.4.0",
