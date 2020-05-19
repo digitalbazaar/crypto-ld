@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/digitalbazaar/crypto-ld.png?branch=master)](https://travis-ci.org/digitalbazaar/crypto-ld)
 
-> A Javascript library for generating Linked Data cryptographic key pairs
+> A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.
 
 ## Table of Contents
 
@@ -80,7 +80,7 @@ libraries for key types you'll be working with via the `use()` method.
 
 For example, to use this library with only the `ed25519` key type:
 
-```
+```js
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
@@ -93,7 +93,7 @@ const keyPair = await cryptoLd.generate(); // generates an ed25519 key pair
 
 To use the library with all supported key types:
 
-```
+```js
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
@@ -140,7 +140,7 @@ operations supported by all key types.
 
 To export just the public key of a pair - `exportPublic()`:
 
-```
+```js
 await keyPair.exportPublic();
 // ->
 { 
@@ -157,7 +157,7 @@ await keyPair.exportPublic();
 To export the full key pair, including private key (warning: this should be a
 carefully considered operation, best left to dedicated Key Management Systems):
 
-```
+```js
 await keyPair.exportFull();
 // ->
 {
@@ -173,7 +173,7 @@ await keyPair.exportFull();
 
 To generate a fingerprint:
 
-```
+```js
 keyPair.fingerprint();
 // ->
 'z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL'
@@ -181,10 +181,42 @@ keyPair.fingerprint();
 
 To verify a fingerprint:
 
-```
+```js
 keyPair.verifyFingerprint('z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL');
 // ->
 { valid: true }
+```
+
+### Operations on signature-related key pairs
+
+For key pairs that are related to signature and verification (that extend from
+the `LDVerifierKeyPair` class), two additional operations must be supported:
+
+#### Creating a signer function
+
+In order to perform a cryptographic signature, you need to create a `sign`
+function, and then invoke it.
+
+```js
+const keyPair = cryptoLd.generate({type: 'ed25519'});
+
+const {sign} = keyPair.signer();
+
+const data = 'test data to sign';
+const signatureValue = await sign({data});
+```
+
+#### Creating a verifier function
+
+In order to verify a cryptographic signature, you need to create a `verify`
+function, and then invoke it (passing it the data to verify, and the signature).
+
+```js
+const keyPair = cryptoLd.generate({type: 'ed25519'});
+
+const {verify} = keyPair.verifier();
+
+const {valid} = await verify({data, signature});
 ```
 
 ## Contribute
