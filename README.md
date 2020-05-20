@@ -84,7 +84,7 @@ For example, to use this library with only the `ed25519` key type:
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
-cryptoLd.use(require('ed25519-key-pair');
+cryptoLd.use(require('ed25519-key-pair'));
 
 // With only one key type installed, you do not need to specify key type for
 // most operations
