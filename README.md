@@ -1,6 +1,6 @@
 # Cryptographic Key Pair Library for Linked Data _(crypto-ld)_
 
-[![Build Status](https://travis-ci.org/digitalbazaar/crypto-ld.png?branch=master)](https://travis-ci.org/digitalbazaar/crypto-ld)
+[![Node.js CI](https://github.com/digitalbazaar/crypto-ld/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/crypto-ld/actions?query=workflow%3A%22Node.js+CI%22)
 
 > A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.
 
@@ -28,13 +28,13 @@ cryptographic key type. The following libraries are currently supported.
 |-------------|--------------|---------|-------|
 | `ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-key-pair`](https://github.com/digitalbazaar/ed25519-key-pair) | Signatures, VCs, zCaps, DIDAuth |
 | `secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
-| `rsa`       | [RsaSignature2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-key-pair`](https://github.com/digitalbazaar/rsa-key-pair) | Legacy/interop signatures and use cases |
+| `rsa`       | [RsaSignature2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-key-pair`](https://github.com/digitalbazaar/rsa-key-pair) | Signatures, VCs |
 | `x25519`    | X25519KeyAgreementKey2019 | [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
 
 See also (related specs):
 
 * [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
-* [Linked Data Proofs 1.0](https://w3c-dvcg.github.io/ld-proofs/)
+* [Linked Data Proofs 1.0](https://w3c-ccg.github.io/ld-proofs/)
 
 #### Choosing a Key Type
 
@@ -47,7 +47,7 @@ authorization capabilities, and DIDAuth operations:
 * Use **EcdsaSepc256k1** keys if your use case requires it (for example, if 
   you're developing for a Bitcoin-based or Ethereum-based ledger), or if you
   require Hierarchical Deterministic (HD) wallet functionality. 
-* Only use RSA keys when interfacing with legacy systems that require them.
+* Only use RSA keys when interfacing with systems that require them.
   
 For key agreement protocols for encryption operations:
 
