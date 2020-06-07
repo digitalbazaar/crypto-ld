@@ -89,7 +89,9 @@ describe('LDKeyPair', () => {
 
   describe('export()', () => {
     it('should error if neither private or public key specified', async () => {
-      expect(() => {keyPair.export()}).to.throw(/Export requires/);
+      expect(() => {
+        keyPair.export();
+      }).to.throw(/Export requires/);
     });
 
     it('should export just the public key serialization', async () => {
