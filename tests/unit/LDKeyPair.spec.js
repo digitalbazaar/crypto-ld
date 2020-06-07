@@ -87,7 +87,11 @@ describe('LDKeyPair', () => {
     });
   });
 
-  describe('exportPublic()', () => {
+  describe('export()', () => {
+    it('should error if neither private or public key specified', async () => {
+      expect(() => {keyPair.export()}).to.throw(/Export requires/);
+    });
+
     it('should export just the public key serialization', async () => {
       keyPair.controller = 'did:ex:1234';
       keyPair.id = 'did:ex:1234#fingerprint';
@@ -102,16 +106,14 @@ describe('LDKeyPair', () => {
         throw new Error('Should not be exported');
       };
 
-      expect(keyPair.exportPublic()).to.eql({
+      expect(keyPair.export({publicKey: true})).to.eql({
         controller: 'did:ex:1234',
         id: 'did:ex:1234#fingerprint',
         publicKeyBase58: 'encoded public key',
         type: 'ExampleVerificationKey2020'
       });
     });
-  });
 
-  describe('exportFull()', () => {
     it('should export just the public key serialization', async () => {
       keyPair.controller = 'did:ex:1234';
       keyPair.id = 'did:ex:1234#fingerprint';
@@ -127,7 +129,7 @@ describe('LDKeyPair', () => {
         node.privateKeyBase58 = encodedPrivateKey;
         return node;
       };
-      expect(keyPair.exportFull()).to.eql({
+      expect(keyPair.export({publicKey: true, privateKey: true})).to.eql({
         controller: 'did:ex:1234',
         id: 'did:ex:1234#fingerprint',
         publicKeyBase58: 'encoded public key',
