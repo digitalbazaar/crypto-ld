@@ -1,5 +1,12 @@
 # crypto-ld ChangeLog
 
+## 3.8.0 - 2020-06-23
+
+### Added
+- Setup CI and coverage workflow.
+- Add node 14 to CI.
+- Use sodium-native@3.2.0.
+
 ## 3.7.0 - 2019-09-06
 
 ### Added
