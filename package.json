@@ -28,7 +28,7 @@
     "semver": "^6.2.0"
   },
   "optionalDependencies": {
-    "sodium-native": "^2.3.0"
+    "sodium-native": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
