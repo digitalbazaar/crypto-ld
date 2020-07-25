@@ -26,10 +26,10 @@ cryptographic key type. The following libraries are currently supported.
 
 | Type        | Crypto Suite | Library | Usage |
 |-------------|--------------|---------|-------|
-| `ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-key-pair`](https://github.com/digitalbazaar/ed25519-key-pair) | Signatures, VCs, zCaps, DIDAuth |
-| `secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
-| `rsa`       | [RsaSignature2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-key-pair`](https://github.com/digitalbazaar/rsa-key-pair) | Signatures, VCs |
-| `x25519`    | X25519KeyAgreementKey2019 | [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
+| `Ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-verification-key-2018`](https://github.com/digitalbazaar/ed25519-verification-key-2018) | Signatures, VCs, zCaps, DIDAuth |
+| `Secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
+| `RSA`       | [RsaVerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-verification-key-2018`](https://github.com/digitalbazaar/rsa-verification-key-2018) | Signatures, VCs |
+| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
 
 See also (related specs):
 
@@ -43,7 +43,7 @@ For digital signatures using the
 signing of Verifiable Credentials using [`vc-js`](https://github.com/digitalbazaar/vc-js),
 authorization capabilities, and DIDAuth operations:
 
-* Prefer **Ed25519** type keys, by default.
+* Prefer **Ed25519VerificationKey2018** type keys, by default.
 * Use **EcdsaSepc256k1** keys if your use case requires it (for example, if 
   you're developing for a Bitcoin-based or Ethereum-based ledger), or if you
   require Hierarchical Deterministic (HD) wallet functionality. 
@@ -78,46 +78,31 @@ npm install
 In order to use this library, you will need to import and install driver
 libraries for key types you'll be working with via the `use()` method.
 
-For example, to use this library with only the `ed25519` key type:
+To use the library with one or more supported suites:
 
 ```js
-import {CryptoLD} from 'crypto-ld';
-const cryptoLd = new CryptoLD();
-import Ed25519 from 'ed25519-key-pair';
-
-cryptoLd.use(Ed25519);
-
-// With only one key type installed, you do not need to specify key type for
-// most operations
-const keyPair = await cryptoLd.generate(); // generates an ed25519 key pair
-```
-
-To use the library with all supported key types:
-
-```js
-import Ed25519 from 'ed25519-key-pair';
-import RSA from 'rsa-key-pair';
+import {Ed25519VerificationKey2018} from 'ed25519-verification-key-2018';
+import {RsaVerificationKey2018} from 'rsa-key-pair';
 import Secp256k1 from 'secp256k1-key-pair';
 import X25519 from 'x25519-key-pair';
 
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
-cryptoLd.use(Ed25519); // ed25519 type
-cryptoLd.use(RSA); // rsa type
-cryptoLd.use(Secp256k1); // secp256k1 type
-cryptoLd.use(X25519); // x25519 type
+cryptoLd.use(Ed25519VerificationKey2018);
+cryptoLd.use(RsaVerificationKey2018);
+cryptoLd.use(Secp256k1);
+cryptoLd.use(X25519);
 
-// When using multiple key types, you'll need to specify type when generating
-const edKeyPair = await cryptoLd.generate({type: 'ed25519'});
-const rsaKeyPair = await cryptoLd.generate({type: 'rsa'});
+const edKeyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
+const rsaKeyPair = await cryptoLd.generate({type: 'RsaVerificationKey2018'});
 ```
 
 ### Generating a new public/private key pair
 
 To generate a new public/private key pair: `cryptoLd.generate(options)`:
 
-* `{string} [type]` Optional if only one key type is installed, required otherwise. 
+* `{string} [suite]` Suite name, required. 
 * `{string} [controller]` Optional controller URI or DID to initialize the
   generated key. (This will also init the key id.) 
 * `{string} [seed]` Optional deterministic seed value (only supported by some
@@ -204,7 +189,7 @@ In order to perform a cryptographic signature, you need to create a `sign`
 function, and then invoke it.
 
 ```js
-const keyPair = cryptoLd.generate({type: 'ed25519'});
+const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
 
 const {sign} = keyPair.signer();
 
@@ -218,7 +203,7 @@ In order to verify a cryptographic signature, you need to create a `verify`
 function, and then invoke it (passing it the data to verify, and the signature).
 
 ```js
-const keyPair = cryptoLd.generate({type: 'ed25519'});
+const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
 
 const {verify} = keyPair.verifier();
 
