@@ -7,11 +7,13 @@
   libraries.
 - Implement chai-like `.use()` API for installing and specifying individual key 
   types.
-- **BREAKING**: Rename `.publicNode()` to `.exportPublic()`, 
-  rename `.export()` to `.exportFull()`.
+- **BREAKING**: Rename `.publicNode()` to `.export()`.
 - **BREAKING**: Remove deprecated `.owner` instance property
 - **BREAKING**: Remove deprecated `.passphrase` instance property, and the `encrypt()` and 
   `decrypt()` methods (these are no longer used).
+
+### Upgrading from v3.7.0
+TBD
 
 ## 3.7.0 - 2019-09-06
 
