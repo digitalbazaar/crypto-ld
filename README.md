@@ -102,7 +102,7 @@ const rsaKeyPair = await cryptoLd.generate({type: 'RsaVerificationKey2018'});
 
 To generate a new public/private key pair: `cryptoLd.generate(options)`:
 
-* `{string} [suite]` Suite name, required. 
+* `{string} [type]` Suite name, required. 
 * `{string} [controller]` Optional controller URI or DID to initialize the
   generated key. (This will also init the key id.) 
 * `{string} [seed]` Optional deterministic seed value (only supported by some
