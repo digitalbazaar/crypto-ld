@@ -26,16 +26,6 @@ describe('LDKeyPair', () => {
     });
   });
 
-  describe('getters', () => {
-    it('publicKey getter should throw abstract error', async () => {
-      expect(() => keyPair.publicKey).to.throw(/Abstract method/);
-    });
-
-    it('privateKey getter should throw abstract error', async () => {
-      expect(() => keyPair.privateKey).to.throw(/Abstract method/);
-    });
-  });
-
   describe('generate()', () => {
     it('should throw an abstract method error', async () => {
       let error;
