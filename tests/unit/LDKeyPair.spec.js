@@ -90,9 +90,9 @@ describe('LDKeyPair', () => {
       keyPair.type = 'ExampleVerificationKey2020';
       const encodedPublicKey = 'encoded public key';
 
-      keyPair.addPublicKey = node => {
-        node.publicKeyBase58 = encodedPublicKey;
-        return node;
+      keyPair.addPublicKey = ({key}) => {
+        key.publicKeyBase58 = encodedPublicKey;
+        return key;
       };
       keyPair.addPrivateKey = () => {
         throw new Error('Should not be exported');
@@ -113,13 +113,13 @@ describe('LDKeyPair', () => {
       const encodedPublicKey = 'encoded public key';
       const encodedPrivateKey = 'encoded private key';
 
-      keyPair.addPublicKey = node => {
-        node.publicKeyBase58 = encodedPublicKey;
-        return node;
+      keyPair.addPublicKey = ({key}) => {
+        key.publicKeyBase58 = encodedPublicKey;
+        return key;
       };
-      keyPair.addPrivateKey = node => {
-        node.privateKeyBase58 = encodedPrivateKey;
-        return node;
+      keyPair.addPrivateKey = ({key}) => {
+        key.privateKeyBase58 = encodedPrivateKey;
+        return key;
       };
       expect(keyPair.export({publicKey: true, privateKey: true})).to.eql({
         controller: 'did:ex:1234',
