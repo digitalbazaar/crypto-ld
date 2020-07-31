@@ -129,7 +129,7 @@ operations supported by all key types.
 
 #### Exporting the public key only
 
-To export just the public key of a pair - `exportPublic()`:
+To export just the public key of a pair - use `export()`:
 
 ```js
 await keyPair.export({publicKey: true});
