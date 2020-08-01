@@ -26,7 +26,7 @@ describe('CryptoLD', () => {
 
   describe('use()', () => {
     it('should install library driver for suite', async () => {
-      const keyLibrary = {type: 'Ed25519VerificationKey2018'};
+      const keyLibrary = {suite: 'Ed25519VerificationKey2018'};
 
       cryptoLd.use(keyLibrary);
 
@@ -60,7 +60,7 @@ describe('CryptoLD', () => {
 
     it('should generate based on key type', async () => {
       const keyLibrary = {
-        type: 'Ed25519VerificationKey2018',
+        suite: 'Ed25519VerificationKey2018',
         generate: async options => options
       };
       cryptoLd.use(keyLibrary);
@@ -97,7 +97,7 @@ describe('CryptoLD', () => {
 
     it('should return an instance from serialized data', async () => {
       const keyLibrary = {
-        type: 'Ed25519VerificationKey2018',
+        suite: 'Ed25519VerificationKey2018',
         from: async data => data
       };
       cryptoLd.use(keyLibrary);
