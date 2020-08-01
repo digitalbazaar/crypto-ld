@@ -81,7 +81,7 @@ libraries for key types you'll be working with via the `use()` method.
 To use the library with one or more supported suites:
 
 ```js
-import {Ed25519VerificationKey2018} from 'ed25519-verification-key-2018';
+import {Ed25519VerificationKey2018} from '@digitalbazaar/ed25519-verification-key-2018';
 import {RsaVerificationKey2018} from 'rsa-verification-key-2018';
 import {EcdsaSecp256k1VerificationKey2019} from 'ecdsa-secp256k1-verification-key-2019';
 import {X25519KeyAgreementKey2019} from 'x25519-key-agreement-key-2019';
