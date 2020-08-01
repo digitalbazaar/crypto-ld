@@ -3,17 +3,46 @@
 ## 4.0.0 - TBD
 
 ### Changed
-- **BREAKING**: Extracted bundled Ed25519 and RSA key types to their own
-  libraries.
 - Implement chai-like `.use()` API for installing and specifying individual key 
   types.
-- **BREAKING**: Rename `.publicNode()` to `.export()`.
+- **BREAKING**: Extracted bundled Ed25519 and RSA key suites to their own
+  libraries.
 - **BREAKING**: Remove deprecated `.owner` instance property
 - **BREAKING**: Remove deprecated `.passphrase` instance property, and the `encrypt()` and 
   `decrypt()` methods (these are no longer used).
+- **BREAKING**: Remove deprecated/unused `publicKey` and `privateKey` properties.
+- **BREAKING**: Rename `.publicNode()` to `.export({publicKey: true})`.
+- **BREAKING**: `.export()` now requires explicitly stating whether you're 
+  exporting public or private key material.
+- **BREAKING**: Changed `verifyFingerprint()` to used named params.
+- **BREAKING**: Changed `addPublicKey()` and `addPrivateKey()` to used named params.
+
+### 4.0.0 - Purpose
+
+The previous design (`v3.7` and earlier) bundled two key types with this
+library (RSA and Ed25519), which resulted in extraneous code and bundle size
+for projects that only used one of them (or used some other suite). The
+decision was made to extract those bundled suites to their own repositories,
+and to add a builder-style `.use()` API to `crypto-ld` so that client code
+could select just the suites they needed.
+
+Since this was a comprehensive breaking change in usage, this also gave an 
+opportunity to clean up and streamline the existing API, change function
+signatures to be consistent (for example, to consistently used named parameters),
+and to remove deprecated and unused APIs and properties.
 
 ### Upgrading from v3.7.0
-TBD
+
+Since this is a comprehensive breaking change, you will need to audit and change
+pretty much all usage of `crypto-ld` and compatible key pairs. Specifically:
+
+* Ed25519 and RSA keys are no longer imported from `crypto-ld`, they'll need to
+  be imported from their own packages.
+* Since key suites have been decoupled from `crypto-ld`, it means that this
+  library should only be used when a project is using _multiple_ key suites.
+  If you're just using a single suite, then you can use that suite directly,
+  without `crypto-ld`.
+* Most function param signatures have been changed to use `{}` style named params.
 
 ## 3.7.0 - 2019-09-06
 
