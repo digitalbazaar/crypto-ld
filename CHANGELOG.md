@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 4.0.0 - TBD
+## 4.0.0 - 2020-08-01
 
 ### Changed
 - Implement chai-like `.use()` API for installing and specifying individual key 
