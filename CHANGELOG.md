@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 4.0.2 - 2020-08-01
+
+### Changed
+- Fix `use()` suite usage.
+
 ## 4.0.1 - 2020-08-01
 
 ### Changed
