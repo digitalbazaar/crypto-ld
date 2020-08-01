@@ -27,9 +27,9 @@ cryptographic key type. The following libraries are currently supported.
 | Type        | Crypto Suite | Library | Usage |
 |-------------|--------------|---------|-------|
 | `Ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-verification-key-2018`](https://github.com/digitalbazaar/ed25519-verification-key-2018) | Signatures, VCs, zCaps, DIDAuth |
-| `Secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`secp256k1-key-pair`](https://github.com/digitalbazaar/secp256k1-key-pair/) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
+| `Secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`ecdsa-secp256k1-verification-key-2019`](https://github.com/digitalbazaar/ecdsa-secp256k1-verification-key-2019) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
 | `RSA`       | [RsaVerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-verification-key-2018`](https://github.com/digitalbazaar/rsa-verification-key-2018) | Signatures, VCs |
-| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-pair) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
+| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-agreement-key-2019`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
 
 See also (related specs):
 
