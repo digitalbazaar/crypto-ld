@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 4.0.1 - 2020-08-01
+
+### Changed
+- Removed unused `sodium-native` dependency.
+
 ## 4.0.0 - 2020-08-01
 
 ### Changed
