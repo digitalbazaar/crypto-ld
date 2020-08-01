@@ -140,7 +140,6 @@ await keyPair.export({publicKey: true});
   type: 'Ed25519VerificationKey2018',
   publicKeyBase58: 'GKKcpmPU3sanTBkoDZq9fwwysu4x7VaUTquosPchSBza'
 }
-*/
 ```
 
 #### Exporting the full public-private key pair

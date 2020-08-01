@@ -22,9 +22,6 @@
     "lib/*.js"
   ],
   "dependencies": {},
-  "optionalDependencies": {
-    "sodium-native": "^3.2.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-transform-modules-commonjs": "^7.10.1",
