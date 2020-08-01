@@ -82,17 +82,17 @@ To use the library with one or more supported suites:
 
 ```js
 import {Ed25519VerificationKey2018} from 'ed25519-verification-key-2018';
-import {RsaVerificationKey2018} from 'rsa-key-pair';
-import Secp256k1 from 'secp256k1-key-pair';
-import X25519 from 'x25519-key-pair';
+import {RsaVerificationKey2018} from 'rsa-verification-key-2018';
+import {EcdsaSecp256k1VerificationKey2019} from 'ecdsa-secp256k1-verification-key-2019';
+import {X25519KeyAgreementKey2019} from 'x25519-key-agreement-key-2019';
 
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
 cryptoLd.use(Ed25519VerificationKey2018);
 cryptoLd.use(RsaVerificationKey2018);
-cryptoLd.use(Secp256k1);
-cryptoLd.use(X25519);
+cryptoLd.use(EcdsaSecp256k1VerificationKey2019);
+cryptoLd.use(X25519KeyAgreementKey2019);
 
 const edKeyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
 const rsaKeyPair = await cryptoLd.generate({type: 'RsaVerificationKey2018'});
@@ -173,7 +173,9 @@ keyPair.fingerprint();
 To verify a fingerprint:
 
 ```js
-keyPair.verifyFingerprint('z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL');
+keyPair.verifyFingerprint({
+  fingerprint: 'z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL'
+});
 // ->
 { valid: true }
 ```
