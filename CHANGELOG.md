@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 3.9.0 - 2020-09-30
+
+### Changed
+- Use node-forge@0.10.0.
+
 ## 3.8.0 - 2020-06-23
 
 ### Added
