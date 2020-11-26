@@ -1,5 +1,10 @@
 # crypto-ld ChangeLog
 
+## 4.0.3 - 2020-11-25
+
+### Changed
+- Publish package.
+
 ## 4.0.2 - 2020-08-01
 
 ### Changed
