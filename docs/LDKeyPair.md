@@ -33,8 +33,7 @@ An LDKeyPair can encrypt private key material.
 | [options] | <code>KeyPairOptions</code> | <code>{}</code> | See [KeyPairOptions](./index.md#KeyPairOptions). |
 | [options.passphrase] | <code>string</code> | <code>null</code> | For encrypting the private key. |
 | options.id | <code>string</code> |  | The Key id. |
-| options.controller | <code>string</code> |  | DID of the person/entity controlling   this key. |
-| [options.owner] | <code>string</code> |  | DID or URI of owner. DEPRECATED, use  `controller` instead. |
+| options.controller | <code>string</code> |  | DID or URI of the person/entity controlling this key. |
 
 **Example**  
 ```js
@@ -73,14 +72,13 @@ information used in verification methods by signatures.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> | <code>{}</code> | Needs either a controller or owner. |
-| [options.controller] | <code>string</code> | <code>&quot;this.controller&quot;</code> | DID of the person/entity controlling this key pair. |
-| [options.owner] | <code>string</code> | <code>&quot;this.owner&quot;</code> | DID of key owner. Deprecated term, use `controller`. |
+| [options] | <code>Object</code> | <code>{}</code> | |
+| [options.controller] | <code>string</code> | <code>&quot;this.controller&quot;</code> | DID or URI of the person/entity controlling this key pair. |
 
 **Example**  
 ```js
 > ldKeyPair.publicNode();
-{id: 'test-keypair-id', owner: 'did:uuid:example'}
+{id: 'test-keypair-id', controller: 'did:uuid:example'}
 ```
 <a name="LDKeyPair+export"></a>
 
