@@ -57,8 +57,7 @@ KeyPair Options.
 | --- | --- | --- |
 | passphrase | <code>string</code> | For encrypting the private key. |
 | id | <code>string</code> | Key Id. |
-| controller | <code>string</code> | DID of the person/entity controlling this key. |
-| owner | <code>string</code> | DID or URI of owner. DEPRECATED, use  `controller` instead. |
+| controller | <code>string</code> | DID or URI of the person/entity controlling this key. |
 
 <a name="SerializedLdKey"></a>
 
