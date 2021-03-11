@@ -1,6 +1,8 @@
 # Cryptographic Key Pair Library for Linked Data _(crypto-ld)_
 
 [![Node.js CI](https://github.com/digitalbazaar/crypto-ld/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/crypto-ld/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM Version](https://img.shields.io/npm/v/crypto-ld.svg?style=flat-square)](https://npm.im/crypto-ld)
+
 
 > A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.
 
@@ -16,7 +18,7 @@
 
 ## Background
 
-### Supported Key Types
+### Supported Key Types (`crypto-ld` versions `4+`)
 
 This library provides general Linked Data cryptographic key generation 
 functionality, but does not support any individual key type by default.
@@ -26,10 +28,17 @@ cryptographic key type. The following libraries are currently supported.
 
 | Type        | Crypto Suite | Library | Usage |
 |-------------|--------------|---------|-------|
-| `Ed25519`   | [Ed25519VerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#ed25519) | [`ed25519-verification-key-2018`](https://github.com/digitalbazaar/ed25519-verification-key-2018) | Signatures, VCs, zCaps, DIDAuth |
+| `Ed25519`   | **[Ed25519VerificationKey2020](https://w3c-ccg.github.io/lds-ed25519-2020/#ed25519verificationkey2020)** (recommended), [Ed25519VerificationKey2018](https://w3c-ccg.github.io/lds-ed25519-2018/#the-ed25519-key-format) (legacy) | **[`ed25519-verification-key-2020 >=1.0`](https://github.com/digitalbazaar/ed25519-verification-key-2020)** (recommended),  [`ed25519-verification-key-2018 >=2.0`](https://github.com/digitalbazaar/ed25519-verification-key-2018) (legacy) | Signatures, VCs, zCaps, DIDAuth |
+| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-agreement-key-2019 >=4.0`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
 | `Secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`ecdsa-secp256k1-verification-key-2019`](https://github.com/digitalbazaar/ecdsa-secp256k1-verification-key-2019) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
-| `RSA`       | [RsaVerificationKey2018](https://w3c-ccg.github.io/ld-cryptosuite-registry/#rsasignature2018) | [`rsa-verification-key-2018`](https://github.com/digitalbazaar/rsa-verification-key-2018) | Signatures, VCs |
-| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-agreement-key-2019`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
+
+### Legacy Supported Key Types (`crypto-ld` versions `<=3`)
+
+In the previous version (v3.x) of `crypto-ld`, the RSA and Ed25519 suites were
+bundled with `crypto-ld` (as opposed to residing in standalone packages).
+For previous usage instructions of bundled RSA, Ed25519 and 
+Curve25519/[`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019/tree/v3.1.0)
+type keys, see the [README for `crypto-ld` v3.9](https://github.com/digitalbazaar/crypto-ld/tree/v3.9.0).
 
 See also (related specs):
 
@@ -43,11 +52,10 @@ For digital signatures using the
 signing of Verifiable Credentials using [`vc-js`](https://github.com/digitalbazaar/vc-js),
 authorization capabilities, and DIDAuth operations:
 
-* Prefer **Ed25519VerificationKey2018** type keys, by default.
+* Prefer **Ed25519VerificationKey2020** type keys, by default.
 * Use **EcdsaSepc256k1** keys if your use case requires it (for example, if 
   you're developing for a Bitcoin-based or Ethereum-based ledger), or if you
   require Hierarchical Deterministic (HD) wallet functionality. 
-* Only use RSA keys when interfacing with systems that require them.
   
 For key agreement protocols for encryption operations:
 
@@ -61,7 +69,7 @@ your system will largely depend on your design decisions.
 
 ## Install
 
-- Node.js 10.12.0+ is required.
+- Node.js 12.0+ is required.
 
 To install locally (for development):
 
@@ -81,21 +89,16 @@ libraries for key types you'll be working with via the `use()` method.
 To use the library with one or more supported suites:
 
 ```js
-import {Ed25519VerificationKey2018} from '@digitalbazaar/ed25519-verification-key-2018';
-import {RsaVerificationKey2018} from 'rsa-verification-key-2018';
-import {EcdsaSecp256k1VerificationKey2019} from 'ecdsa-secp256k1-verification-key-2019';
-import {X25519KeyAgreementKey2019} from 'x25519-key-agreement-key-2019';
+import {Ed25519VerificationKey2020} from '@digitalbazaar/ed25519-verification-key-2020';
+import {X25519KeyAgreementKey2019} from '@digitalbazaar/x25519-key-agreement-key-2019';
 
 import {CryptoLD} from 'crypto-ld';
 const cryptoLd = new CryptoLD();
 
-cryptoLd.use(Ed25519VerificationKey2018);
-cryptoLd.use(RsaVerificationKey2018);
-cryptoLd.use(EcdsaSecp256k1VerificationKey2019);
+cryptoLd.use(Ed25519VerificationKey2020);
 cryptoLd.use(X25519KeyAgreementKey2019);
 
-const edKeyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
-const rsaKeyPair = await cryptoLd.generate({type: 'RsaVerificationKey2018'});
+const edKeyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
 ```
 
 ### Generating a new public/private key pair
@@ -134,11 +137,11 @@ To export just the public key of a pair - use `export()`:
 ```js
 await keyPair.export({publicKey: true});
 // ->
-{ 
-  id: 'did:ex:123#z6MkumafR1duPR5FZgbVu8nzX3VyhULoXNpq9rpjhfaiMQmx',
-  controller: 'did:ex:123',
-  type: 'Ed25519VerificationKey2018',
-  publicKeyBase58: 'GKKcpmPU3sanTBkoDZq9fwwysu4x7VaUTquosPchSBza'
+{
+  type: 'Ed25519VerificationKey2020',
+  id: 'did:example:1234#z6MkszZtxCmA2Ce4vUV132PCuLQmwnaDD5mw2L23fGNnsiX3',
+  controller: 'did:example:1234',
+  publicKeyMultibase: 'zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf'
 }
 ```
 
@@ -151,11 +154,11 @@ carefully considered operation, best left to dedicated Key Management Systems):
 await keyPair.export({publicKey: true, privateKey: true});
 // ->
 {
-  id: 'did:ex:123#z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL',
-  controller: 'did:ex:123',
-  type: 'Ed25519VerificationKey2018',
-  publicKeyBase58: 'DggG1kT5JEFwTC6RJTsT6VQPgCz1qszCkX5Lv4nun98x',
-  privateKeyBase58: 'sSicNq6YBSzafzYDAcuduRmdHtnrZRJ7CbvjzdQhC45ewwvQeuqbM2dNwS9RCf6buUJGu6N3rBy6oLSpMwha8tc'
+  type: 'Ed25519VerificationKey2020',
+  id: 'did:example:1234#z6MkszZtxCmA2Ce4vUV132PCuLQmwnaDD5mw2L23fGNnsiX3',
+  controller: 'did:example:1234',
+  publicKeyMultibase: 'zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf',
+  privateKeyMultibase: 'z4E7Q4neNHwv3pXUNzUjzc6TTYspqn9Aw6vakpRKpbVrCzwKWD4hQDHnxuhfrTaMjnR8BTp9NeUvJiwJoSUM6xHAZ'
 }
 ```
 
@@ -166,14 +169,14 @@ To generate a fingerprint:
 ```js
 keyPair.fingerprint();
 // ->
-'z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL'
+'z6MkszZtxCmA2Ce4vUV132PCuLQmwnaDD5mw2L23fGNnsiX3'
 ```
 
 To verify a fingerprint:
 
 ```js
 keyPair.verifyFingerprint({
-  fingerprint: 'z6Mks8wJbzhWdmkQZgw7z2qHwaxPVnFsFmEZSXzGkLkvhMvL'
+  fingerprint: 'z6MkszZtxCmA2Ce4vUV132PCuLQmwnaDD5mw2L23fGNnsiX3'
 });
 // ->
 { valid: true }
@@ -190,7 +193,7 @@ In order to perform a cryptographic signature, you need to create a `sign`
 function, and then invoke it.
 
 ```js
-const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
+const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
 
 const {sign} = keyPair.signer();
 
@@ -204,7 +207,7 @@ In order to verify a cryptographic signature, you need to create a `verify`
 function, and then invoke it (passing it the data to verify, and the signature).
 
 ```js
-const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2018'});
+const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
 
 const {verify} = keyPair.verifier();
 
