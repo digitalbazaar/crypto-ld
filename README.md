@@ -18,6 +18,11 @@
 
 ## Background
 
+See also (related specs):
+
+* [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
+* [Linked Data Proofs 1.0](https://w3c-ccg.github.io/ld-proofs/)
+
 ### Supported Key Types (`crypto-ld` versions `4+`)
 
 This library provides general Linked Data cryptographic key generation 
@@ -39,11 +44,6 @@ bundled with `crypto-ld` (as opposed to residing in standalone packages).
 For previous usage instructions of bundled RSA, Ed25519 and standalone
 Curve25519/[`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019/tree/v3.1.0)
 type keys, see the [README for `crypto-ld` v3.9](https://github.com/digitalbazaar/crypto-ld/tree/v3.9.0).
-
-See also (related specs):
-
-* [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
-* [Linked Data Proofs 1.0](https://w3c-ccg.github.io/ld-proofs/)
 
 ### Choosing a Key Type
 
