@@ -1,5 +1,19 @@
 # crypto-ld ChangeLog
 
+## 5.0.0 - 
+
+### Changed
+- **BREAKING**: Remove `LDVerifierKeyPair` subclass. Fold `signer()` and 
+  `verifier()` methods into parent `LDKeyPair` class.
+- **BREAKING**: Remove `keyPair.addPrivateKey()` and `keyPair.addPublicKey()`.
+  Subclasses will just need to override `export()` directly.
+
+### Upgrading from v4.x
+The breaking changes in v5 do not affect any application code, they only affect
+key pair plugins such as
+https://github.com/digitalbazaar/ed25519-verification-key-2020.
+No changes necessary in application code upgrading from `v5` from `v4`.
+
 ## 4.0.3 - 2020-11-25
 
 ### Changed

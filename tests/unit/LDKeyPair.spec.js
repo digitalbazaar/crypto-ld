@@ -52,18 +52,6 @@ describe('LDKeyPair', () => {
     });
   });
 
-  describe('addPublicKey()', () => {
-    it('should throw an abstract method error', async () => {
-      expect(() => keyPair.addPublicKey()).to.throw(/Abstract method/);
-    });
-  });
-
-  describe('addPrivateKey()', () => {
-    it('should throw an abstract method error', async () => {
-      expect(() => keyPair.addPrivateKey()).to.throw(/Abstract method/);
-    });
-  });
-
   describe('fingerprint()', () => {
     it('should throw an abstract method error', async () => {
       expect(() => keyPair.fingerprint()).to.throw(/Abstract method/);
@@ -83,51 +71,41 @@ describe('LDKeyPair', () => {
         keyPair.export();
       }).to.throw(/Export requires/);
     });
+  });
 
-    it('should export just the public key serialization', async () => {
-      keyPair.controller = 'did:ex:1234';
-      keyPair.id = 'did:ex:1234#fingerprint';
-      keyPair.type = 'ExampleVerificationKey2020';
-      const encodedPublicKey = 'encoded public key';
+  describe('signer()', () => {
+    it('should return an abstract signer function', async () => {
+      const vKeyPair = new LDKeyPair();
 
-      keyPair.addPublicKey = ({key}) => {
-        key.publicKeyBase58 = encodedPublicKey;
-        return key;
-      };
-      keyPair.addPrivateKey = () => {
-        throw new Error('Should not be exported');
-      };
+      const {sign} = vKeyPair.signer();
+      let error;
 
-      expect(keyPair.export({publicKey: true})).to.eql({
-        controller: 'did:ex:1234',
-        id: 'did:ex:1234#fingerprint',
-        publicKeyBase58: 'encoded public key',
-        type: 'ExampleVerificationKey2020'
-      });
+      try {
+        await sign({data: 'test data'});
+      } catch(e) {
+        error = e;
+      }
+
+      expect(error.message).to.match(/Abstract method/);
     });
+  });
 
-    it('should export just the public key serialization', async () => {
-      keyPair.controller = 'did:ex:1234';
-      keyPair.id = 'did:ex:1234#fingerprint';
-      keyPair.type = 'ExampleVerificationKey2020';
-      const encodedPublicKey = 'encoded public key';
-      const encodedPrivateKey = 'encoded private key';
+  describe('verifier()', () => {
+    it('should return an abstract verifier function', async () => {
+      const vKeyPair = new LDKeyPair();
 
-      keyPair.addPublicKey = ({key}) => {
-        key.publicKeyBase58 = encodedPublicKey;
-        return key;
-      };
-      keyPair.addPrivateKey = ({key}) => {
-        key.privateKeyBase58 = encodedPrivateKey;
-        return key;
-      };
-      expect(keyPair.export({publicKey: true, privateKey: true})).to.eql({
-        controller: 'did:ex:1234',
-        id: 'did:ex:1234#fingerprint',
-        publicKeyBase58: 'encoded public key',
-        privateKeyBase58: 'encoded private key',
-        type: 'ExampleVerificationKey2020'
-      });
+      const {verify} = vKeyPair.verifier();
+      const key = {};
+      const signature = 'test signature';
+      let error;
+
+      try {
+        await verify({key, signature});
+      } catch(e) {
+        error = e;
+      }
+
+      expect(error.message).to.match(/Abstract method/);
     });
   });
 });
