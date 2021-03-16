@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 5.0.0 - 
+## 5.0.0 - 2021-03-16
 
 ### Changed
 - **BREAKING**: Remove `LDVerifierKeyPair` subclass. Fold `signer()` and 
