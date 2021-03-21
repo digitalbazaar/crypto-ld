@@ -193,7 +193,7 @@ In order to perform a cryptographic signature, you need to create a `sign`
 function, and then invoke it.
 
 ```js
-const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
+const keyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
 
 const {sign} = keyPair.signer();
 
@@ -207,7 +207,7 @@ In order to verify a cryptographic signature, you need to create a `verify`
 function, and then invoke it (passing it the data to verify, and the signature).
 
 ```js
-const keyPair = cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
+const keyPair = await cryptoLd.generate({type: 'Ed25519VerificationKey2020'});
 
 const {verify} = keyPair.verifier();
 
