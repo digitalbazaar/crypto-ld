@@ -5,6 +5,7 @@
 ### Changed
 - **BREAKING**: Remove `LDVerifierKeyPair` subclass. Fold `signer()` and 
   `verifier()` methods into parent `LDKeyPair` class.
+- **BREAKING**: `export()` is now a sync function (no reason for it to be async).
 - **BREAKING**: Remove `keyPair.addPrivateKey()` and `keyPair.addPublicKey()`.
   Subclasses will just need to override `export()` directly.
 

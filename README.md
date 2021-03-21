@@ -135,7 +135,7 @@ operations supported by all key types.
 To export just the public key of a pair - use `export()`:
 
 ```js
-await keyPair.export({publicKey: true});
+keyPair.export({publicKey: true});
 // ->
 {
   type: 'Ed25519VerificationKey2020',
@@ -151,7 +151,7 @@ To export the full key pair, including private key (warning: this should be a
 carefully considered operation, best left to dedicated Key Management Systems):
 
 ```js
-await keyPair.export({publicKey: true, privateKey: true});
+keyPair.export({publicKey: true, privateKey: true});
 // ->
 {
   type: 'Ed25519VerificationKey2020',
