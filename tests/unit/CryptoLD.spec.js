@@ -143,7 +143,31 @@ describe('CryptoLD', () => {
         .equal('The "documentLoader" parameter is required.');
     });
 
-    it('should fetch key document via documentLoader', async () => {
+    it('error if documentLoader is not properly implemented', async () => {
+      const keyDocument = {
+        ...EXAMPLE_KEY_DOCUMENT, type: 'ExampleKeySuite202X'
+      };
+      const keyId = keyDocument.id;
+      const documentLoader = async url => {
+        return {
+          url,
+          // a properly implemented loader returns `document` not `doc`
+          doc: keyDocument
+        };
+      };
+
+      let error;
+      try {
+        await cryptoLd.fromKeyId({id: keyId, documentLoader});
+      } catch(e) {
+        error = e;
+      }
+      expect(error).to.exist;
+      expect(error.message).to.contain('function must return');
+      expect(error.cause.message).to.contain('function must return');
+    });
+
+    it('error if key document not found via documentLoader', async () => {
       const keyDocument = {...EXAMPLE_KEY_DOCUMENT};
       const keyId = keyDocument.id;
       const documentLoader = async () => {
@@ -169,7 +193,7 @@ describe('CryptoLD', () => {
       const documentLoader = async url => {
         return {
           url,
-          doc: keyDocument
+          document: keyDocument
         };
       };
 
@@ -193,7 +217,7 @@ describe('CryptoLD', () => {
       const documentLoader = async url => {
         return {
           url,
-          doc: keyDocument
+          document: keyDocument
         };
       };
       const ExampleKeySuite202X = {};
