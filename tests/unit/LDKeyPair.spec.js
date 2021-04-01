@@ -108,4 +108,69 @@ describe('LDKeyPair', () => {
       expect(error.message).to.match(/Abstract method/);
     });
   });
+
+  describe('fromKeyDocument()', async () => {
+    const EXAMPLE_KEY_DOCUMENT = {
+      id: 'did:example:1234#z6MkszZtxCmA2Ce4vUV132PCuLQmwnaDD5mw2L23fGNnsiX3',
+      controller: 'did:example:1234',
+      type: 'Ed25519VerificationKey2020',
+      publicKeyMultibase: 'zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf'
+    };
+
+    it('should error on missing keyId', async () => {
+      let error;
+      try {
+        await LDKeyPair.fromKeyDocument();
+      } catch(e) {
+        error = e;
+      }
+      expect(error).to.exist;
+      expect(error.message).to.equal('The "document" parameter is required.');
+    });
+
+    it('should invoke the suite from() method', async () => {
+      const keyDocument = {...EXAMPLE_KEY_DOCUMENT};
+      let error;
+      try {
+        await LDKeyPair.fromKeyDocument({document: keyDocument,
+          checkContext: false, checkRevoked: false});
+      } catch(e) {
+        error = e;
+      }
+      expect(error).to.exist;
+      expect(error.message).to
+        .equal('Abstract method from() must be implemented in subclass.');
+    });
+
+    it('should error on failed context check', async () => {
+      const keyDocument = {...EXAMPLE_KEY_DOCUMENT};
+      let error;
+      try {
+        await LDKeyPair.fromKeyDocument({document: keyDocument,
+          checkContext: true});
+      } catch(e) {
+        error = e;
+      }
+      expect(error).to.exist;
+
+      expect(error.message).to
+        // eslint-disable-next-line max-len
+        .equal('Key document does not contain required context "INVALID LDKeyPair CONTEXT".');
+    });
+
+    it('should error on failed revoked check', async () => {
+      const keyDocument = {...EXAMPLE_KEY_DOCUMENT,
+        revoked: '2019-10-12T07:20:50.52Z'};
+      let error;
+      try {
+        await LDKeyPair.fromKeyDocument({document: keyDocument,
+          checkContext: false, checkRevoked: true});
+      } catch(e) {
+        error = e;
+      }
+      expect(error).to.exist;
+      expect(error.message).to
+        .equal('Key has been revoked: "2019-10-12T07:20:50.52Z".');
+    });
+  });
 });
