@@ -159,8 +159,11 @@ describe('LDKeyPair', () => {
     });
 
     it('should error on failed revoked check', async () => {
-      const keyDocument = {...EXAMPLE_KEY_DOCUMENT,
-        revoked: '2019-10-12T07:20:50.52Z'};
+      const pastDate = new Date(2020, 11, 17).toISOString()
+        .replace(/\.[0-9]{3}/, '');
+      const keyDocument = {
+        ...EXAMPLE_KEY_DOCUMENT,
+        revoked: pastDate};
       let error;
       try {
         await LDKeyPair.fromKeyDocument({document: keyDocument,
@@ -169,8 +172,8 @@ describe('LDKeyPair', () => {
         error = e;
       }
       expect(error).to.exist;
-      expect(error.message).to
-        .equal('Key has been revoked: "2019-10-12T07:20:50.52Z".');
+      expect(error.message).to.contain('revoked');
+      expect(error.message).to.contain(pastDate);
     });
   });
 });
