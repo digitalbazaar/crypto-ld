@@ -44,7 +44,7 @@ describe('CryptoLD', () => {
         error = e;
       }
       expect(error.message).to
-        .equal('A key type is required to generate.');
+        .equal('Missing key type.');
     });
 
     it('should error on unsupported type', async () => {
@@ -59,15 +59,17 @@ describe('CryptoLD', () => {
     });
 
     it('should generate based on key type', async () => {
-      const keyLibrary = {
+      const Suite = {
         suite: 'Ed25519VerificationKey2018',
         generate: async options => options
       };
-      cryptoLd.use(keyLibrary);
+      cryptoLd.use(Suite);
       const result = await cryptoLd.generate({
         type: 'Ed25519VerificationKey2018', controller: 'did:ex:1234'
       });
-      expect(result).to.eql({controller: 'did:ex:1234'});
+      expect(result).to.eql({
+        controller: 'did:ex:1234', type: 'Ed25519VerificationKey2018'
+      });
     });
   });
 
@@ -96,11 +98,11 @@ describe('CryptoLD', () => {
     });
 
     it('should return an instance from serialized data', async () => {
-      const keyLibrary = {
+      const Suite = {
         suite: 'Ed25519VerificationKey2018',
         from: async data => data
       };
-      cryptoLd.use(keyLibrary);
+      cryptoLd.use(Suite);
 
       const serializedKey = {
         type: 'Ed25519VerificationKey2018'
