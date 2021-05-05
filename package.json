@@ -1,6 +1,6 @@
 {
   "name": "crypto-ld",
-  "version": "5.1.1-0",
+  "version": "6.0.0",
   "description": "A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.",
   "homepage": "https://github.com/digitalbazaar/crypto-ld",
   "author": {
