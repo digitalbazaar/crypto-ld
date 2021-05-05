@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 6.0.0 -
+## 6.0.0 - 2021-05-05
 
 ### Changed
 - **BREAKING**: `.from()` now routs to `.fromKeyDocument()` if the serialized
