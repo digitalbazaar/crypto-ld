@@ -1,5 +1,13 @@
 # crypto-ld ChangeLog
 
+## 6.0.0 -
+
+### Changed
+- **BREAKING**: `.from()` now routs to `.fromKeyDocument()` if the serialized
+  key object has a `@context`. This update is to make for more secure behavior
+  when creating key pair instances from "untrusted" key objects (say, fetched
+  from the web etc).
+
 ## 5.1.0 - 2021-04-01
 
 ### Added
