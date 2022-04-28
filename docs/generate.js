@@ -1,8 +1,8 @@
 /**
- * Copyright (c) 2018-2019 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
-const jsdoc2md = require('jsdoc-to-markdown');
-const fs = require('fs');
+import jsdoc2md from 'jsdoc-to-markdown';
+import fs from 'fs';
 
 const template = fs.readFileSync('./docs/template.hbs', 'utf-8');
 const opFactory = file => ({template, files: `./lib/${file}`});

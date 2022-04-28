@@ -1,9 +1,17 @@
 # crypto-ld ChangeLog
 
+## 7.0.0 - 2022-xx-xx
+
+### Changed
+- **BREAKING**: Convert to module (ESM).
+- **BREAKING**: Require Node.js >=14.
+- Update dependencies.
+- Lint module.
+
 ## 6.0.0 - 2021-05-05
 
 ### Changed
-- **BREAKING**: `.from()` now routs to `.fromKeyDocument()` if the serialized
+- **BREAKING**: `.from()` now routes to `.fromKeyDocument()` if the serialized
   key object has a `@context`. This update is to make for more secure behavior
   when creating key pair instances from "untrusted" key objects (say, fetched
   from the web etc).

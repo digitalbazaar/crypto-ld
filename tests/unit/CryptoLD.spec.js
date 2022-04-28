@@ -1,13 +1,11 @@
 /*!
- * Copyright (c) 2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2020-2022 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
 chai.should();
 const {expect} = chai;
 
-const {CryptoLD} = require('../../lib');
+import {CryptoLD} from '../../lib/index.js';
 
 describe('CryptoLD', () => {
   let cryptoLd;

@@ -1,21 +1,17 @@
 /*!
- * Copyright (c) 2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2020-2022 Digital Bazaar, Inc. All rights reserved.
  */
 module.exports = config => {
-  const bundler = process.env.BUNDLER || 'webpack';
-  const frameworks = ['mocha'];
-  const files = ['**/*.spec.js'];
-  const reporters = ['mocha'];
   const browsers = ['ChromeHeadless'];
+  const files = ['**/*.spec.js'];
+  const frameworks = ['mocha'];
+  const preprocessors = ['webpack', 'sourcemap'];
+  const reporters = ['mocha'];
   const client = {
     mocha: {
       timeout: 2000
     }
   };
-  // main bundle preprocessors
-  const preprocessors = [];
-  preprocessors.push(bundler);
-  preprocessors.push('sourcemap');
 
   return config.set({
     frameworks,
@@ -31,13 +27,8 @@ module.exports = config => {
       'unit/*.js': preprocessors
     },
     webpack: {
-      devtool: 'inline-source-map',
       mode: 'development',
-      node: {
-        Buffer: false,
-        crypto: false,
-        setImmediate: false
-      }
+      devtool: 'inline-source-map'
     }
   });
 };
