@@ -2,7 +2,7 @@
  * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 import jsdoc2md from 'jsdoc-to-markdown';
-import fs from 'fs';
+import fs from 'node:fs';
 
 const template = fs.readFileSync('./docs/template.hbs', 'utf-8');
 const opFactory = file => ({template, files: `./lib/${file}`});
