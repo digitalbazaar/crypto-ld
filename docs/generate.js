@@ -8,7 +8,7 @@ const template = fs.readFileSync('./docs/template.hbs', 'utf-8');
 const opFactory = file => ({template, files: `./lib/${file}`});
 
 // we only generate docs for files which end with keypair or index.
-const docs = /(keypair|index).js/i;
+const docs = /(keypair|cryptold|index).js$/i;
 const files = fs.readdirSync('./lib')
   .filter(p => docs.test(p));
 files.forEach(filePath => {
