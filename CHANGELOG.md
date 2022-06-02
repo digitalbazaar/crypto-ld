@@ -1,6 +1,6 @@
 # crypto-ld ChangeLog
 
-## 7.0.0 - 2022-xx-xx
+## 7.0.0 - 2022-06-01
 
 ### Changed
 - **BREAKING**: Convert to module (ESM).
