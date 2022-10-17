@@ -1,8 +1,8 @@
 {
-  "name": "crypto-ld",
-  "version": "7.0.1-0",
+  "name": "@digitalcredentials/crypto-ld",
+  "version": "7.0.2",
   "description": "A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.",
-  "homepage": "https://github.com/digitalbazaar/crypto-ld",
+  "homepage": "https://github.com/digitalcredentials/crypto-ld",
   "author": {
     "name": "Digital Bazaar, Inc.",
     "email": "support@digitalbazaar.com",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitalbazaar/crypto-ld"
+    "url": "https://github.com/digitalcredentials/crypto-ld"
   },
   "bugs": {
-    "url": "https://github.com/digitalbazaar/crypto-ld/issues",
+    "url": "https://github.com/digitalcredentials/crypto-ld/issues",
     "email": "support@digitalbazaar.com"
   },
   "license": "BSD-3-Clause",
@@ -27,6 +27,9 @@
   "files": [
     "lib/**/*.js"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {},
   "devDependencies": {
     "benchmark": "^2.1.4",
