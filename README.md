@@ -1,8 +1,7 @@
 # Cryptographic Key Pair Library for Linked Data _(crypto-ld)_
 
-[![Node.js CI](https://github.com/digitalbazaar/crypto-ld/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalbazaar/crypto-ld/actions?query=workflow%3A%22Node.js+CI%22)
-[![NPM Version](https://img.shields.io/npm/v/crypto-ld.svg?style=flat-square)](https://npm.im/crypto-ld)
-
+[![Build status](https://img.shields.io/github/workflow/status/digitalcredentials/crypto-ld/Node.js%20CI)](https://github.com/digitalcredentials/crypto-ld/actions?query=workflow%3A%22Node.js+CI%22)
+[![NPM Version](https://img.shields.io/npm/v/@digitalcredentials/crypto-ld.svg)](https://npm.im/@digitalcredentials/crypto-ld)
 
 > A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.
 
@@ -23,7 +22,7 @@ See also (related specs):
 * [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/)
 * [Linked Data Proofs 1.0](https://w3c-ccg.github.io/ld-proofs/)
 
-### Supported Key Types (`crypto-ld` versions `4+`)
+### Supported Key Types
 
 This library provides general Linked Data cryptographic key generation 
 functionality, but does not support any individual key type by default.
@@ -33,23 +32,15 @@ cryptographic key type. The following libraries are currently supported.
 
 | Type        | Crypto Suite | Library | Usage |
 |-------------|--------------|---------|-------|
-| `Ed25519`   | **[Ed25519VerificationKey2020](https://w3c-ccg.github.io/lds-ed25519-2020/#ed25519verificationkey2020)** (recommended), [Ed25519VerificationKey2018](https://w3c-ccg.github.io/lds-ed25519-2018/#the-ed25519-key-format) (legacy) | **[`ed25519-verification-key-2020 >=1.0`](https://github.com/digitalbazaar/ed25519-verification-key-2020)** (recommended),  [`ed25519-verification-key-2018 >=2.0`](https://github.com/digitalbazaar/ed25519-verification-key-2018) (legacy) | Signatures, VCs, zCaps, DIDAuth |
-| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-agreement-key-2019 >=4.0`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher) |  
+| `Ed25519`   | **[Ed25519VerificationKey2020](https://w3c-ccg.github.io/lds-ed25519-2020/#ed25519verificationkey2020)** (recommended), [Ed25519VerificationKey2018](https://w3c-ccg.github.io/lds-ed25519-2018/#the-ed25519-key-format) (legacy) | **[`ed25519-verification-key-2020 >=1.0`](https://github.com/digitalcredentials/ed25519-verification-key-2020)** (recommended),  [`ed25519-verification-key-2018 >=2.0`](https://github.com/digitalbazaar/ed25519-verification-key-2018) (legacy) | Signatures, VCs, zCaps, DIDAuth |
+| `X25519/Curve25519`    | X25519KeyAgreementKey2019 | [`x25519-key-agreement-key-2019 >=4.0`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019) | [ECDH](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman) key agreement, JWE/CWE encryption with [`minimal-cipher`](https://github.com/digitalcredentials/minimal-cipher) |  
 | `Secp256k1` | [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/ld-cryptosuite-registry/#secp256k1) | [`ecdsa-secp256k1-verification-key-2019`](https://github.com/digitalbazaar/ecdsa-secp256k1-verification-key-2019) | Signatures, VCs, zCaps, DIDAuth, HD Wallets |
-
-### Legacy Supported Key Types (`crypto-ld` versions `<=3`)
-
-In the previous version (v3.x) of `crypto-ld`, the RSA and Ed25519 suites were
-bundled with `crypto-ld` (as opposed to residing in standalone packages).
-For previous usage instructions of bundled RSA, Ed25519 and standalone
-Curve25519/[`x25519-key-pair`](https://github.com/digitalbazaar/x25519-key-agreement-key-2019/tree/v3.1.0)
-type keys, see the [README for `crypto-ld` v3.9](https://github.com/digitalbazaar/crypto-ld/tree/v3.9.0).
 
 ### Choosing a Key Type
 
 For digital signatures using the 
-[`jsonld-signatures`](https://github.com/digitalbazaar/jsonld-signatures), 
-signing of Verifiable Credentials using [`vc-js`](https://github.com/digitalbazaar/vc-js),
+[`jsonld-signatures`](https://github.com/digitalcredentials/jsonld-signatures), 
+signing of Verifiable Credentials using [`vc-js`](https://github.com/digitalcredentials/vc-js),
 authorization capabilities, and DIDAuth operations:
 
 * Prefer **Ed25519VerificationKey2020** type keys, by default.
@@ -59,7 +50,7 @@ authorization capabilities, and DIDAuth operations:
   
 For key agreement protocols for encryption operations:
 
-* Use **Curve25519** with the [`minimal-cipher`](https://github.com/digitalbazaar/minimal-cipher)
+* Use **Curve25519** with the [`minimal-cipher`](https://github.com/digitalcredentials/minimal-cipher)
   library.
 
 ## Security
@@ -74,7 +65,7 @@ your system will largely depend on your design decisions.
 To install locally (for development):
 
 ```
-git clone https://github.com/digitalbazaar/crypto-ld.git
+git clone https://github.com/digitalcredentials/crypto-ld.git
 cd crypto-ld
 npm install
 ```
@@ -89,10 +80,10 @@ libraries for key types you'll be working with via the `use()` method.
 To use the library with one or more supported suites:
 
 ```js
-import {Ed25519VerificationKey2020} from '@digitalbazaar/ed25519-verification-key-2020';
-import {X25519KeyAgreementKey2020} from '@digitalbazaar/x25519-key-agreement-key-2020';
+import {Ed25519VerificationKey2020} from '@digitalcredentials/ed25519-verification-key-2020';
+import {X25519KeyAgreementKey2020} from '@digitalcredentials/x25519-key-agreement-key-2020';
 
-import {CryptoLD} from 'crypto-ld';
+import {CryptoLD} from '@digitalcredentials/crypto-ld';
 const cryptoLd = new CryptoLD();
 
 cryptoLd.use(Ed25519VerificationKey2020);
