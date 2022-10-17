@@ -1,6 +1,6 @@
 {
   "name": "@digitalcredentials/crypto-ld",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.",
   "homepage": "https://github.com/digitalcredentials/crypto-ld",
   "author": {
