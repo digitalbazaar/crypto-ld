@@ -18,6 +18,7 @@
   },
   "license": "BSD-3-Clause",
   "type": "module",
+  "main": "./lib/index.js",
   "exports": {
     ".": {
       "import": "./lib/index.js"
