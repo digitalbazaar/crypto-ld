@@ -34,6 +34,7 @@
   "files": [
     "dist",
     "lib",
+    "types",
     "rollup.config.js",
     "build-dist.sh",
     "README.md",
