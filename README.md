@@ -1,6 +1,6 @@
 # Cryptographic Key Pair Library for Linked Data _(crypto-ld)_
 
-[![Build status](https://img.shields.io/github/workflow/status/digitalcredentials/crypto-ld/Node.js%20CI)](https://github.com/digitalcredentials/crypto-ld/actions?query=workflow%3A%22Node.js+CI%22)
+[![Node.js CI](https://github.com/digitalcredentials/vpqr/workflows/Node.js%20CI/badge.svg)](https://github.com/digitalcredentials/vpqr/actions?query=workflow%3A%22Node.js+CI%22)
 [![NPM Version](https://img.shields.io/npm/v/@digitalcredentials/crypto-ld.svg)](https://npm.im/@digitalcredentials/crypto-ld)
 
 > A Javascript library for generating and performing common operations on Linked Data cryptographic key pairs.
