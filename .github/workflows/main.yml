@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x, 20.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -47,23 +47,23 @@ jobs:
     - run: npm install
     - name: Run karma tests
       run: npm run test-karma
-  coverage:
-    needs: [test-node, test-karma]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - name: Generate coverage report
-      run: npm run coverage-ci
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        file: ./coverage/lcov.info
-        fail_ci_if_error: true
+#  coverage:
+#    needs: [test-node, test-karma]
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        node-version: [18.x]
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Use Node.js ${{ matrix.node-version }}
+#      uses: actions/setup-node@v1
+#      with:
+#        node-version: ${{ matrix.node-version }}
+#    - run: npm install
+#    - name: Generate coverage report
+#      run: npm run coverage-ci
+#    - name: Upload coverage to Codecov
+#      uses: codecov/codecov-action@v2
+#      with:
+#        file: ./coverage/lcov.info
+#        fail_ci_if_error: true

@@ -5,7 +5,7 @@ import chai from 'chai';
 chai.should();
 const {expect} = chai;
 
-import {LDKeyPair} from '../../lib/index.js';
+import {LDKeyPair} from '../lib';
 
 describe('LDKeyPair', () => {
   let keyPair;

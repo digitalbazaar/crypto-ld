@@ -5,7 +5,7 @@ import chai from 'chai';
 chai.should();
 const {expect} = chai;
 
-import {CryptoLD} from '../../lib/index.js';
+import {CryptoLD} from '../lib';
 
 describe('CryptoLD', () => {
   let cryptoLd;
